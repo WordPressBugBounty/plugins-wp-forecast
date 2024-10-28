@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2006-2023 Hans Matzen  (email : webmaster at tuxlog dot de)
+ * Copyright 2006-2024 Hans Matzen  (email : webmaster at tuxlog dot de)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

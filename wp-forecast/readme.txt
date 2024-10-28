@@ -3,8 +3,10 @@ Contributors: tuxlog
 Donate link: http://www.tuxlog.de
 Tags: weather,forecast,widget,openweathermap,open-meteo
 Requires at least: 4.0
-Tested up to: 6.5
-Stable tag: 9.4
+Tested up to: 6.7
+Stable tag: 9.5
+License: GPLv2
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 wp-forecast is a highly customizable plugin for wordpress, showing weather-data from open-meteo.com and/or openweathermap.com.
 
 == Description ==
@@ -171,6 +173,11 @@ Probably you have enabled "Delete options during plugin deactivation?" and used 
 
 
 == Changelog ==
+
+= v9.5 (2024-10-28) =
+* added missing UV icon 5
+* fixed typo in License tag
+* fixed conversion of precipitation forecast data
 
 = v9.4 (2024-04-05) =
 * added hint to OneCall API

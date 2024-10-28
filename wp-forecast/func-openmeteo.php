@@ -36,7 +36,8 @@ if ( ! function_exists( 'openmeteo_get_weather' ) ) {
 
 		// add non metric parms to url.
 		if ( 1 != $metric ) {
-			$urlparms .= '&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch';
+			//$urlparms .= '&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch';
+            $urlparms .= '&temperature_unit=fahrenheit&windspeed_unit=mph';
 		}
 
 		// check parms.
@@ -125,7 +126,7 @@ if ( ! function_exists( 'openmeteo_get_data' ) ) {
 
 		// map precipitation values.
 		$w['precipProbability'] = $weather_array['daily']['precipitation_probability_max'][0];
-		$w['precipIntensity']   = $weather_array['daily']['precipitation_sum'][0];
+		$w['precipIntensity']   = round( $weather_array['daily']['precipitation_sum'][0] / 2.54 / 10, 1);
 		$w['precipType']        = 'Rain';
 
 		// if it snows set precipitation type to snow.
@@ -182,7 +183,7 @@ if ( ! function_exists( 'openmeteo_get_data' ) ) {
 			}
 
 			// convert mm to inches for compatibility reasons with accuweather.
-			$w[ 'fc_dt_precipIntensity' . $j ] = $w[ 'fc_dt_precipIntensity' . $j ] / 2.54 / 10;
+			$w[ 'fc_dt_precipIntensity' . $j ] = round( $w[ 'fc_dt_precipIntensity' . $j ] / 2.54 / 10, 1);
 		}
 
 		// fill failure anyway.

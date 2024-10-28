@@ -3,10 +3,10 @@
  * Plugin Name: wp-forecast
  * Plugin URI: http://www.tuxlog.de
  * Description: wp-forecast is a highly customizable plugin for WordPress, showing weather-data from Open-Meteo or OpenWeathermMap.
- * Version: 9.4
+ * Version: 9.5
  * Author: Hans Matzen
  * Author URI: http://www.tuxlog.de
- * License:     GPL2
+ * License:     GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Domain Path: lang
  * Text Domain: wp-forecast
@@ -15,7 +15,7 @@
  */
 
 /**
- * Copyright 2006-2023  Hans Matzen
+ * Copyright 2006-2024  Hans Matzen
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
