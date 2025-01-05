@@ -92,6 +92,12 @@ div.wp-forecast-fc-head {
 	float:left;
 }
 
+/* style for forecast label */
+div.wp-forecast-fc-label {
+	display: inline-block;
+	padding: 3px;
+}
+
 /* style for forecast data details */
 div.wp-forecast-fc-oneday {
 	padding: 0px;
@@ -201,3 +207,6 @@ div.wpfico41 {background-image: url("icons/wsprites.png");background-position: -
 div.wpfico42 {background-image: url("icons/wsprites.png");background-position: -10px -2290px;width:64px;height:40px;}
 div.wpfico43 {background-image: url("icons/wsprites.png");background-position: -10px -2350px;width:64px;height:40px;}
 div.wpficoswa {background-image: url("icons/wsprites.png");background-position: -10px -2410px;width:64px;height:40px;}
+
+/* for weather icon font */
+.wpf-wi-icon {font-size: 45px; padding-top: 15px;}

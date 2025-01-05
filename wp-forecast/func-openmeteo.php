@@ -1,7 +1,7 @@
 <?php
 /** This file is part of the wp-forecast plugin for WordPress
  *
- * Copyright 2023  Hans Matzen  (email : webmaster at tuxlog dot de)
+ * Copyright 2024  Hans Matzen  (email : webmaster at tuxlog dot de)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,8 +36,8 @@ if ( ! function_exists( 'openmeteo_get_weather' ) ) {
 
 		// add non metric parms to url.
 		if ( 1 != $metric ) {
-			//$urlparms .= '&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch';
-            $urlparms .= '&temperature_unit=fahrenheit&windspeed_unit=mph';
+			// $urlparms .= '&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch';
+			$urlparms .= '&temperature_unit=fahrenheit&windspeed_unit=mph';
 		}
 
 		// check parms.
@@ -118,7 +118,7 @@ if ( ! function_exists( 'openmeteo_get_data' ) ) {
 		// values from current_weather and daily.
 		$w['temperature']   = round( $weather_array['current_weather']['temperature'], 0 );
 		$w['weathertext']   = openmeteo_wmocode2text( $weather_array['current_weather']['weathercode'] );
-		$w['weathericon']   = openmeteo_map_icon( $weather_array['current_weather']['weathercode'] );
+		$w['weathericon']   = openmeteo_map_icon( $weather_array['current_weather']['weathercode'], false, $wpf_vars['fonticon'] );
 		$w['weatherid']     = $weather_array['current_weather']['weathercode'];
 		$w['wgusts']        = round( $weather_array['daily']['windgusts_10m_max'][0] / 3.6, 1 );  // convert from kmh to ms.
 		$w['windspeed']     = round( $weather_array['current_weather']['windspeed'] / 3.6, 1 );   // convert from kmh to ms.
@@ -126,7 +126,7 @@ if ( ! function_exists( 'openmeteo_get_data' ) ) {
 
 		// map precipitation values.
 		$w['precipProbability'] = $weather_array['daily']['precipitation_probability_max'][0];
-		$w['precipIntensity']   = round( $weather_array['daily']['precipitation_sum'][0] / 2.54 / 10, 1);
+		$w['precipIntensity']   = round( $weather_array['daily']['precipitation_sum'][0] / 2.54 / 10, 1 );
 		$w['precipType']        = 'Rain';
 
 		// if it snows set precipitation type to snow.
@@ -154,7 +154,7 @@ if ( ! function_exists( 'openmeteo_get_data' ) ) {
 
 			$w[ 'fc_obsdate_' . $j ]      = $weather_array['daily']['time'][ $i ] + $odt->getOffset();
 			$w[ 'fc_dt_short_' . $j ]     = openmeteo_wmocode2text( $weather_array['daily']['weathercode'][ $i ] );
-			$w[ 'fc_dt_icon_' . $j ]      = openmeteo_map_icon( $weather_array['daily']['weathercode'][ $i ] );
+			$w[ 'fc_dt_icon_' . $j ]      = openmeteo_map_icon( $weather_array['daily']['weathercode'][ $i ], false, $wpf_vars['fonticon'] );
 			$w[ 'fc_dt_id_' . $j ]        = $weather_array['daily']['weathercode'][ $i ];
 			$w[ 'fc_dt_htemp_' . $j ]     = round( $weather_array['daily']['temperature_2m_max'][ $i ], 0 );
 			$w[ 'fc_dt_ltemp_' . $j ]     = round( $weather_array['daily']['temperature_2m_min'][ $i ], 0 );
@@ -162,7 +162,7 @@ if ( ! function_exists( 'openmeteo_get_data' ) ) {
 			$w[ 'fc_dt_winddir_' . $j ]   = $weather_array['daily']['winddirection_10m_dominant'][ $i ];
 			$w[ 'fc_dt_wgusts_' . $j ]    = round( $weather_array['daily']['windgusts_10m_max'][ $i ] / 3.6, 1 ); // convert from kmh to ms.
 			$w[ 'fc_dt_maxuv_' . $j ]     = $weather_array['daily']['uv_index_max'][ $i ];
-			$w[ 'fc_nt_icon_' . $j ]      = openmeteo_map_icon( $weather_array['daily']['weathercode'][ $i ] );
+			$w[ 'fc_nt_icon_' . $j ]      = openmeteo_map_icon( $weather_array['daily']['weathercode'][ $i ], false, $wpf_vars['fonticon'] );
 			$w[ 'fc_nt_id_' . $j ]        = $weather_array['daily']['weathercode'][ $i ];
 			$w[ 'fc_nt_htemp_' . $j ]     = round( $weather_array['daily']['temperature_2m_max'][ $i ], 0 );
 			$w[ 'fc_nt_ltemp_' . $j ]     = round( $weather_array['daily']['temperature_2m_min'][ $i ], 0 );
@@ -183,7 +183,7 @@ if ( ! function_exists( 'openmeteo_get_data' ) ) {
 			}
 
 			// convert mm to inches for compatibility reasons with accuweather.
-			$w[ 'fc_dt_precipIntensity' . $j ] = round( $w[ 'fc_dt_precipIntensity' . $j ] / 2.54 / 10, 1);
+			$w[ 'fc_dt_precipIntensity' . $j ] = round( $w[ 'fc_dt_precipIntensity' . $j ] / 2.54 / 10, 1 );
 		}
 
 		// fill failure anyway.
@@ -251,7 +251,7 @@ if ( ! function_exists( 'openmeteo_forecast_data' ) ) {
 		$w['accudate'] = date_i18n( $wpf_vars['fc_date_format'], $ct );
 		$w['accutime'] = date_i18n( $wpf_vars['fc_time_format'], $ct );
 
-		$ico            = openmeteo_map_icon( $w['weatherid'], false );
+		$ico            = openmeteo_map_icon( $w['weatherid'], false, $wpf_vars['fonticon'] );
 		$iconfile       = find_icon( $ico );
 		$w['icon']      = 'icons/' . $iconfile;
 		$w['iconcode']  = $ico;
@@ -278,7 +278,7 @@ if ( ! function_exists( 'openmeteo_forecast_data' ) ) {
 			// daytime forecast.
 			$w[ 'fc_obsdate_' . $i ] = date_i18n( $wpf_vars['fc_date_format'], $w[ 'fc_obsdate_' . $i ] );
 
-			$ico                             = openmeteo_map_icon( $w[ 'fc_dt_id_' . $i ], false );
+			$ico                             = openmeteo_map_icon( $w[ 'fc_dt_id_' . $i ], false, $wpf_vars['fonticon'] );
 			$iconfile                        = find_icon( $ico );
 			$w[ 'fc_dt_icon_' . $i ]         = 'icons/' . $iconfile;
 			$w[ 'fc_dt_iconcode_' . $i ]     = $ico;
@@ -292,7 +292,7 @@ if ( ! function_exists( 'openmeteo_forecast_data' ) ) {
 			$w[ 'fc_dt_maxuv_' . $i ]        = $w[ 'fc_dt_maxuv_' . $i ];
 
 			// nighttime forecast.
-			$ico                             = openmeteo_map_icon( $w[ 'fc_nt_id_' . $i ], true );
+			$ico                             = openmeteo_map_icon( $w[ 'fc_nt_id_' . $i ], true, $wpf_vars['fonticon'] );
 			$iconfile                        = find_icon( $ico );
 			$w[ 'fc_nt_icon_' . $i ]         = 'icons/' . $iconfile;
 			$w[ 'fc_nt_iconcode_' . $i ]     = $ico;
@@ -319,8 +319,9 @@ if ( ! function_exists( 'openmeteo_map_icon' ) ) {
 	 *
 	 * @param string $weatherid the id of the weather condition.
 	 * @param bool   $night     the parameter to say if it is night or not.
+	 * @param bool   $icomode   if true use weather icon font, if false use icons from gif.
 	 */
-	function openmeteo_map_icon( $weatherid, $night = false ) {
+	function openmeteo_map_icon( $weatherid, $night = false, $icomode = false ) {
 		/*
 		 Icon mapping from OpenMeteo
 		 */
@@ -328,7 +329,7 @@ if ( ! function_exists( 'openmeteo_map_icon' ) ) {
 		/*
 		WMO Weather interpretation codes (WW)
 		Code		Description
-		0			Clear sky
+		0		Clear sky
 		1, 2, 3		Mainly clear, partly cloudy, and overcast
 		45, 48		Fog and depositing rime fog
 		51, 53, 55	Drizzle: Light, moderate, and dense intensity
@@ -344,76 +345,88 @@ if ( ! function_exists( 'openmeteo_map_icon' ) ) {
 		(*) Thunderstorm forecast with hail is only available in Central Europe
 		*/
 
+		/*
+		 The icons are defined in a two member array.
+		 * First member is the name of the default weathericon gif file
+		 * Second member is the name of the icon from weatherfont
+		 */
+
 		/* defaul clear sky */
-		$icon = '01';
+		$icon = array( '01', 'wi-day-sunny' );
 
 		if ( $night ) {
 			// night icon mapping.
 			$ico_arr = array(
-				0  => '33',
-				1  => '34',
-				2  => '35',
-				3  => '38',
-				45 => '11',
-				48 => '11',
-				51 => '25',
-				53 => '24',
-				55 => '26',
-				56 => '44',
-				57 => '44',
-				61 => '12',
-				63 => '40',
-				65 => '40',
-				66 => '44',
-				67 => '26',
-				71 => '19',
-				73 => '22',
-				75 => '22',
-				77 => '22',
-				80 => '12',
-				81 => '40',
-				82 => '40',
-				85 => '19',
-				86 => '22',
-				95 => '41',
-				96 => '42',
-				99 => '15',
+				0  => array( '33', 'wi-night-clear' ),
+				1  => array( '34', 'wi-night-alt-cloudy' ),
+				2  => array( '35', 'wi-night-partly-cloudy' ),
+				3  => array( '38', 'wi-night-cloudy' ),
+				45 => array( '11', 'wi-night-fog' ),
+				48 => array( '11', 'wi-night-fog' ),
+				51 => array( '25', 'wi-night-sleet' ),
+				53 => array( '24', 'wi-night-sleet' ),
+				55 => array( '26', 'wi-night-sleet' ),
+				56 => array( '44', 'wi-night-alt-sleet' ),
+				57 => array( '44', 'wi-night-alt-sleet' ),
+				61 => array( '12', 'wi-night-rain' ),
+				63 => array( '40', 'wi-night-rain-mix' ),
+				65 => array( '40', 'wi-night-rain-wind' ),
+				66 => array( '44', 'wi-night-sleet' ),
+				67 => array( '26', 'wi-night-alt-sleet' ),
+				71 => array( '19', 'wi-night-snow' ),
+				73 => array( '22', 'wi-night-snow' ),
+				75 => array( '22', 'wi-night-alt-snow' ),
+				77 => array( '22', 'wi-night-alt-sleet' ),
+				80 => array( '12', 'wi-night-showers' ),
+				81 => array( '40', 'wi-night-rain-mix' ),
+				82 => array( '40', 'wi-night-rain-wind' ),
+				85 => array( '19', 'wi-night-snow' ),
+				86 => array( '22', 'wi-night-alt-snow' ),
+				95 => array( '41', 'wi-night-thunderstorm' ),
+				96 => array( '42', 'wi-night-alt-snow-thunderstorm' ),
+				99 => array( '15', 'wi-night-alt-snow-thunderstorm' ),
 			);
 		} else {
 			// day icon mapping.
 			$ico_arr = array(
-				0  => '01',
-				1  => '03',
-				2  => '04',
-				3  => '07',
-				45 => '11',
-				48 => '11',
-				51 => '25',
-				53 => '24',
-				55 => '26',
-				56 => '29',
-				57 => '29',
-				61 => '12',
-				63 => '18',
-				65 => '18',
-				66 => '29',
-				67 => '26',
-				71 => '19',
-				73 => '22',
-				75 => '22',
-				77 => '22',
-				80 => '12',
-				81 => '18',
-				82 => '18',
-				85 => '19',
-				86 => '22',
-				95 => '17',
-				96 => '16',
-				99 => '15',
+				0  => array( '01', 'wi-day-sunny' ),
+				1  => array( '03', 'wi-day-cloudy' ),
+				2  => array( '04', 'wi-day-sunny-overcast' ),
+				3  => array( '07', 'wi-day-cloudy' ),
+				45 => array( '11', 'wi-day-fog' ),
+				48 => array( '11', 'wi-day-fog' ),
+				51 => array( '25', 'wi-day-sleet' ),
+				53 => array( '24', 'wi-day-sleet' ),
+				55 => array( '26', 'wi-day-sleet' ),
+				56 => array( '29', 'wi-day-sleet' ),
+				57 => array( '29', 'wi-day-sleet' ),
+				61 => array( '12', 'wi-day-rain' ),
+				63 => array( '18', 'wi-day-rain-mix' ),
+				65 => array( '18', 'wi-day-rain-wind' ),
+				66 => array( '29', 'wi-day-sleet' ),
+				67 => array( '26', 'wi-day-sleet' ),
+				71 => array( '19', 'wi-day-snow' ),
+				73 => array( '22', 'wi-day-snow' ),
+				75 => array( '22', 'wi-day-snow' ),
+				77 => array( '22', 'wi-day-sleet' ),
+				80 => array( '12', 'wi-day-showers' ),
+				81 => array( '18', 'wi-day-rain-mix' ),
+				82 => array( '18', 'wi-day-rain-wind' ),
+				85 => array( '19', 'wi-day-snow' ),
+				86 => array( '22', 'wi-day-snow' ),
+				95 => array( '17', 'wi-day-thunderstorm' ),
+				96 => array( '16', 'wi-day-snow-thunderstorm' ),
+				99 => array( '15', 'wi-day-snow-thunderstorm' ),
 			);
 		}
 
-		return $ico_arr[ $weatherid ];
+		// return either gif name or weatherfont icon name.
+		if ( '1' == $icomode ) {
+			return $ico_arr[ $weatherid ][1];
+		} else {
+			return $ico_arr[ $weatherid ][0];
+		}
+
 	}
 }
 

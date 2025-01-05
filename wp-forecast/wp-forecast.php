@@ -3,7 +3,7 @@
  * Plugin Name: wp-forecast
  * Plugin URI: http://www.tuxlog.de
  * Description: wp-forecast is a highly customizable plugin for WordPress, showing weather-data from Open-Meteo or OpenWeathermMap.
- * Version: 9.5
+ * Version: 9.6
  * Author: Hans Matzen
  * Author URI: http://www.tuxlog.de
  * License:     GPLv2
@@ -15,7 +15,7 @@
  */
 
 /**
- * Copyright 2006-2024  Hans Matzen
+ * Copyright 2006-2025  Hans Matzen
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,22 +32,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-
-//
-// only use this in case of severe problems accessing the admin dialog
-//
-// preselected transport method for fetching the weather data
-// valid values are
-// curl      - uses libcurl
-// fsockopen - uses fsockopen
-// streams   - uses fopen with streams
-// exthttp   - uses pecl http extension
-// this will override every setting from the admin dialog
-// you have to assure that the chosen transport is supported by the
-// WordPress class WP_Http;
-// .
-static $wp_forecast_pre_transport = '';
-
 //
 // maximal number of widgets to use.
 //
@@ -61,6 +45,7 @@ define( 'WPF_PATH', plugin_dir_path( __FILE__ ) );
 
 // OpenWeathermap functions.
 require_once 'func-openweathermap.php';
+require_once 'func-openweathermap-v2.php';
 // Open-Meteo functions.
 require_once 'func-openmeteo.php';
 
@@ -92,12 +77,6 @@ global $blog_id;
  * a wrapper function called via the init hook.
  */
 function wp_forecast_init() {
-	// first of all check if we have to set a hard given
-	// transport method.
-	if ( isset( $wp_forecast_pre_transport ) && wpf_get_option( 'wp-forecast-pre-transport' ) != $wp_forecast_pre_transport ) {
-			wpf_update_option( 'wp-forecast-pre-transport', $wp_forecast_pre_transport );
-	}
-
 	$count = (int) wpf_get_option( 'wp-forecast-count' );
 
 	$weather = array();
@@ -181,8 +160,8 @@ function wp_forecast_init() {
 		if ( $wpf_vars['expire'] < time() ) {
 			switch ( $wpf_vars['service'] ) {
 				case 'openweathermap':
-					$w       = openweathermap_get_weather( $wpf_vars['OPENWEATHERMAP_BASE_URI'], $wpf_vars['apikey1'], $wpf_vars['loclatitude'], $wpf_vars['loclongitude'], $wpf_vars['metric'] );
-					$weather = openweathermap_get_data( $w, $wpf_vars );
+					$w       = openweathermap_get_weather_v2( $wpf_vars['OPENWEATHERMAP_BASE_URI'], $wpf_vars['apikey1'], $wpf_vars['loclatitude'], $wpf_vars['loclongitude'], $wpf_vars['metric'] );
+					$weather = openweathermap_get_data_v2( $w, $wpf_vars );
 					break;
 
 				case 'openweathermap3':
@@ -225,6 +204,7 @@ function wp_forecast_init() {
 	}
 	// javascript hinzufügen für suche im admin dialog.
 	if ( is_admin() ) {
+		wp_enqueue_script( 'wp-color-picker' );
 		wp_enqueue_script( 'wp-forecast-search', plugins_url( 'wp-forecast-admin.js', __FILE__ ), array( 'jquery' ), '9999' );
 	}
 
@@ -382,6 +362,8 @@ function wp_forecast_data( $wpfcid = 'A', $language_override = null ) {
 	// read service dependent weather data.
 	switch ( $wpf_vars['service'] ) {
 		case 'openweathermap':
+			$weather_arr = openweathermap_forecast_data_v2( $wpfcid, $language_override );
+			break;
 		case 'openweathermap3':
 			$weather_arr = openweathermap_forecast_data( $wpfcid, $language_override );
 			break;
@@ -468,13 +450,6 @@ function widget_wp_forecast_init() {
 
 		wp_unregister_widget_control( $i >= $count ? 'wpf_admin_hint' . $wpfcid : '' );
 	}
-
-	// add filters for transport method check.
-	add_filter( 'use_fsockopen_transport', 'wpf_check_fsockopen' );
-	add_filter( 'use_fopen_transport', 'wpf_check_fopen' );
-	add_filter( 'use_streams_transport', 'wpf_check_streams' );
-	add_filter( 'use_http_extension_transport', 'wpf_check_exthttp' );
-	add_filter( 'use_curl_transport', 'wpf_check_curl' );
 }
 
 /**
@@ -504,7 +479,7 @@ function wpf_filter_url() {
 
 		$weather = maybe_unserialize( wpf_get_option( 'wp-forecast-cache' . $wpfcid ) );
 
-		// only show weather html withour page or header.
+		// only show weather html without page or header.
 		if ( ! $header || 0 == $header ) {
 			show( $selector . $wpfcid, $args, $wpf_vars );
 			exit;

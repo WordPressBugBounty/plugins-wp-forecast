@@ -44,6 +44,7 @@ if ( ! function_exists( 'openweathermap_get_weather' ) ) {
 			return array();
 		}
 		$url1 = $baseuri . 'lat=' . $lat . '&lon=' . $lon . '&appid=' . $apikey . '&exclude=minutely,hourly&units=' . $metric . '&lang=en';
+
 		// Open the file and decode it.
 		$file1 = wp_remote_get( $url1 );
 		if ( ! is_wp_error( $file1 ) ) {
@@ -318,8 +319,9 @@ if ( ! function_exists( 'openweathermap_map_icon' ) ) {
 	 *
 	 * @param string $weatherid the id of the weather condition.
 	 * @param bool   $night     the parameter to say if it is night or not.
+	 * @param bool   $icomode   if true map to weathericon font, if false map to gif images.
 	 */
-	function openweathermap_map_icon( $weatherid, $night = false ) {
+	function openweathermap_map_icon( $weatherid, $night = false, $icomode = false ) {
 		/*
 		 Icon mapping from OWM
 		 */
@@ -387,6 +389,366 @@ if ( ! function_exists( 'openweathermap_map_icon' ) ) {
 		}
 		if ( 804 == $weatherid ) {
 			$icon = '06';
+		}
+
+		// mapping for weathfont icons.
+		if ( false != $icomode ) {
+			if ( 200 == $weatherid ) {
+				$icon = 'wi-thunderstorm'; }
+			if ( 201 == $weatherid ) {
+				$icon = 'wi-thunderstorm'; }
+			if ( 202 == $weatherid ) {
+				$icon = 'wi-thunderstorm'; }
+			if ( 210 == $weatherid ) {
+				$icon = 'wi-lightning'; }
+			if ( 211 == $weatherid ) {
+				$icon = 'wi-lightning'; }
+			if ( 212 == $weatherid ) {
+				$icon = 'wi-lightning'; }
+			if ( 221 == $weatherid ) {
+				$icon = 'wi-lightning'; }
+			if ( 230 == $weatherid ) {
+				$icon = 'wi-thunderstorm'; }
+			if ( 231 == $weatherid ) {
+				$icon = 'wi-thunderstorm'; }
+			if ( 232 == $weatherid ) {
+				$icon = 'wi-thunderstorm'; }
+			if ( 300 == $weatherid ) {
+				$icon = 'wi-sprinkle'; }
+			if ( 301 == $weatherid ) {
+				$icon = 'wi-sprinkle'; }
+			if ( 302 == $weatherid ) {
+				$icon = 'wi-rain'; }
+			if ( 310 == $weatherid ) {
+				$icon = 'wi-rain-mix'; }
+			if ( 311 == $weatherid ) {
+				$icon = 'wi-rain'; }
+			if ( 312 == $weatherid ) {
+				$icon = 'wi-rain'; }
+			if ( 313 == $weatherid ) {
+				$icon = 'wi-showers'; }
+			if ( 314 == $weatherid ) {
+				$icon = 'wi-rain'; }
+			if ( 321 == $weatherid ) {
+				$icon = 'wi-sprinkle'; }
+			if ( 500 == $weatherid ) {
+				$icon = 'wi-sprinkle'; }
+			if ( 501 == $weatherid ) {
+				$icon = 'wi-rain'; }
+			if ( 502 == $weatherid ) {
+				$icon = 'wi-rain'; }
+			if ( 503 == $weatherid ) {
+				$icon = 'wi-rain'; }
+			if ( 504 == $weatherid ) {
+				$icon = 'wi-rain'; }
+			if ( 511 == $weatherid ) {
+				$icon = 'wi-rain-mix'; }
+			if ( 520 == $weatherid ) {
+				$icon = 'wi-showers'; }
+			if ( 521 == $weatherid ) {
+				$icon = 'wi-showers'; }
+			if ( 522 == $weatherid ) {
+				$icon = 'wi-showers'; }
+			if ( 531 == $weatherid ) {
+				$icon = 'wi-storm-showers'; }
+			if ( 600 == $weatherid ) {
+				$icon = 'wi-snow'; }
+			if ( 601 == $weatherid ) {
+				$icon = 'wi-snow'; }
+			if ( 602 == $weatherid ) {
+				$icon = 'wi-sleet'; }
+			if ( 611 == $weatherid ) {
+				$icon = 'wi-rain-mix'; }
+			if ( 612 == $weatherid ) {
+				$icon = 'wi-rain-mix'; }
+			if ( 615 == $weatherid ) {
+				$icon = 'wi-rain-mix'; }
+			if ( 616 == $weatherid ) {
+				$icon = 'wi-rain-mix'; }
+			if ( 620 == $weatherid ) {
+				$icon = 'wi-rain-mix'; }
+			if ( 621 == $weatherid ) {
+				$icon = 'wi-snow'; }
+			if ( 622 == $weatherid ) {
+				$icon = 'wi-snow'; }
+			if ( 701 == $weatherid ) {
+				$icon = 'wi-fog'; }
+			if ( 711 == $weatherid ) {
+				$icon = 'wi-smoke'; }
+			if ( 721 == $weatherid ) {
+				$icon = 'wi-day-haze'; }
+			if ( 731 == $weatherid ) {
+				$icon = 'wi-dust'; }
+			if ( 741 == $weatherid ) {
+				$icon = 'wi-fog'; }
+			if ( 761 == $weatherid ) {
+				$icon = 'wi-dust'; }
+			if ( 762 == $weatherid ) {
+				$icon = 'wi-dust'; }
+			if ( 771 == $weatherid ) {
+				$icon = 'wi-cloudy-gusts'; }
+			if ( 781 == $weatherid ) {
+				$icon = 'wi-tornado'; }
+			if ( 800 == $weatherid ) {
+				$icon = 'wi-day-sunny'; }
+			if ( 801 == $weatherid ) {
+				$icon = 'wi-cloud'; }
+			if ( 802 == $weatherid ) {
+				$icon = 'wi-cloud'; }
+			if ( 803 == $weatherid ) {
+				$icon = 'wi-cloudy'; }
+			if ( 804 == $weatherid ) {
+				$icon = 'wi-cloudy'; }
+			if ( 900 == $weatherid ) {
+				$icon = 'wi-tornado'; }
+			if ( 901 == $weatherid ) {
+				$icon = 'wi-storm-showers'; }
+			if ( 902 == $weatherid ) {
+				$icon = 'wi-hurricane'; }
+			if ( 903 == $weatherid ) {
+				$icon = 'wi-snowflake-cold'; }
+			if ( 904 == $weatherid ) {
+				$icon = 'wi-hot'; }
+			if ( 905 == $weatherid ) {
+				$icon = 'wi-windy'; }
+			if ( 906 == $weatherid ) {
+				$icon = 'wi-hail'; }
+			if ( 957 == $weatherid ) {
+				$icon = 'wi-strong-wind'; }
+			// Day.
+			if ( 200 == $weatherid ) {
+				$icon = 'wi-day-thunderstorm'; }
+			if ( 201 == $weatherid ) {
+				$icon = 'wi-day-thunderstorm'; }
+			if ( 202 == $weatherid ) {
+				$icon = 'wi-day-thunderstorm'; }
+			if ( 210 == $weatherid ) {
+				$icon = 'wi-day-lightning'; }
+			if ( 211 == $weatherid ) {
+				$icon = 'wi-day-lightning'; }
+			if ( 212 == $weatherid ) {
+				$icon = 'wi-day-lightning'; }
+			if ( 221 == $weatherid ) {
+				$icon = 'wi-day-lightning'; }
+			if ( 230 == $weatherid ) {
+				$icon = 'wi-day-thunderstorm'; }
+			if ( 231 == $weatherid ) {
+				$icon = 'wi-day-thunderstorm'; }
+			if ( 232 == $weatherid ) {
+				$icon = 'wi-day-thunderstorm'; }
+			if ( 300 == $weatherid ) {
+				$icon = 'wi-day-sprinkle'; }
+			if ( 301 == $weatherid ) {
+				$icon = 'wi-day-sprinkle'; }
+			if ( 302 == $weatherid ) {
+				$icon = 'wi-day-rain'; }
+			if ( 310 == $weatherid ) {
+				$icon = 'wi-day-rain'; }
+			if ( 311 == $weatherid ) {
+				$icon = 'wi-day-rain'; }
+			if ( 312 == $weatherid ) {
+				$icon = 'wi-day-rain'; }
+			if ( 313 == $weatherid ) {
+				$icon = 'wi-day-rain'; }
+			if ( 314 == $weatherid ) {
+				$icon = 'wi-day-rain'; }
+			if ( 321 == $weatherid ) {
+				$icon = 'wi-day-sprinkle'; }
+			if ( 500 == $weatherid ) {
+				$icon = 'wi-day-sprinkle'; }
+			if ( 501 == $weatherid ) {
+				$icon = 'wi-day-rain'; }
+			if ( 502 == $weatherid ) {
+				$icon = 'wi-day-rain'; }
+			if ( 503 == $weatherid ) {
+				$icon = 'wi-day-rain'; }
+			if ( 504 == $weatherid ) {
+				$icon = 'wi-day-rain'; }
+			if ( 511 == $weatherid ) {
+				$icon = 'wi-day-rain-mix'; }
+			if ( 520 == $weatherid ) {
+				$icon = 'wi-day-showers'; }
+			if ( 521 == $weatherid ) {
+				$icon = 'wi-day-showers'; }
+			if ( 522 == $weatherid ) {
+				$icon = 'wi-day-showers'; }
+			if ( 531 == $weatherid ) {
+				$icon = 'wi-day-storm-showers'; }
+			if ( 600 == $weatherid ) {
+				$icon = 'wi-day-snow'; }
+			if ( 601 == $weatherid ) {
+				$icon = 'wi-day-sleet'; }
+			if ( 602 == $weatherid ) {
+				$icon = 'wi-day-snow'; }
+			if ( 611 == $weatherid ) {
+				$icon = 'wi-day-rain-mix'; }
+			if ( 612 == $weatherid ) {
+				$icon = 'wi-day-rain-mix'; }
+			if ( 615 == $weatherid ) {
+				$icon = 'wi-day-rain-mix'; }
+			if ( 616 == $weatherid ) {
+				$icon = 'wi-day-rain-mix'; }
+			if ( 620 == $weatherid ) {
+				$icon = 'wi-day-rain-mix'; }
+			if ( 621 == $weatherid ) {
+				$icon = 'wi-day-snow'; }
+			if ( 622 == $weatherid ) {
+				$icon = 'wi-day-snow'; }
+			if ( 701 == $weatherid ) {
+				$icon = 'wi-day-fog'; }
+			if ( 711 == $weatherid ) {
+				$icon = 'wi-smoke'; }
+			if ( 721 == $weatherid ) {
+				$icon = 'wi-day-haze'; }
+			if ( 731 == $weatherid ) {
+				$icon = 'wi-dust'; }
+			if ( 741 == $weatherid ) {
+				$icon = 'wi-day-fog'; }
+			if ( 761 == $weatherid ) {
+				$icon = 'wi-dust'; }
+			if ( 762 == $weatherid ) {
+				$icon = 'wi-dust'; }
+			if ( 781 == $weatherid ) {
+				$icon = 'wi-tornado'; }
+			if ( 800 == $weatherid ) {
+				$icon = 'wi-day-sunny'; }
+			if ( 801 == $weatherid ) {
+				$icon = 'wi-day-cloudy'; }
+			if ( 802 == $weatherid ) {
+				$icon = 'wi-day-cloudy'; }
+			if ( 803 == $weatherid ) {
+				$icon = 'wi-cloudy'; }
+			if ( 804 == $weatherid ) {
+				$icon = 'wi-cloudy'; }
+			if ( 900 == $weatherid ) {
+				$icon = 'wi-tornado'; }
+			if ( 902 == $weatherid ) {
+				$icon = 'wi-hurricane'; }
+			if ( 903 == $weatherid ) {
+				$icon = 'wi-snowflake-cold'; }
+			if ( 904 == $weatherid ) {
+				$icon = 'wi-hot'; }
+			if ( 906 == $weatherid ) {
+				$icon = 'wi-day-hail'; }
+			if ( 957 == $weatherid ) {
+				$icon = 'wi-strong-wind'; }
+			// Night.
+			if ( 200 == $weatherid ) {
+				$icon = 'wi-night-alt-thunderstorm'; }
+			if ( 201 == $weatherid ) {
+				$icon = 'wi-night-alt-thunderstorm'; }
+			if ( 202 == $weatherid ) {
+				$icon = 'wi-night-alt-thunderstorm'; }
+			if ( 210 == $weatherid ) {
+				$icon = 'wi-night-alt-lightning'; }
+			if ( 211 == $weatherid ) {
+				$icon = 'wi-night-alt-lightning'; }
+			if ( 212 == $weatherid ) {
+				$icon = 'wi-night-alt-lightning'; }
+			if ( 221 == $weatherid ) {
+				$icon = 'wi-night-alt-lightning'; }
+			if ( 230 == $weatherid ) {
+				$icon = 'wi-night-alt-thunderstorm'; }
+			if ( 231 == $weatherid ) {
+				$icon = 'wi-night-alt-thunderstorm'; }
+			if ( 232 == $weatherid ) {
+				$icon = 'wi-night-alt-thunderstorm'; }
+			if ( 300 == $weatherid ) {
+				$icon = 'wi-night-alt-sprinkle'; }
+			if ( 301 == $weatherid ) {
+				$icon = 'wi-night-alt-sprinkle'; }
+			if ( 302 == $weatherid ) {
+				$icon = 'wi-night-alt-rain'; }
+			if ( 310 == $weatherid ) {
+				$icon = 'wi-night-alt-rain'; }
+			if ( 311 == $weatherid ) {
+				$icon = 'wi-night-alt-rain'; }
+			if ( 312 == $weatherid ) {
+				$icon = 'wi-night-alt-rain'; }
+			if ( 313 == $weatherid ) {
+				$icon = 'wi-night-alt-rain'; }
+			if ( 314 == $weatherid ) {
+				$icon = 'wi-night-alt-rain'; }
+			if ( 321 == $weatherid ) {
+				$icon = 'wi-night-alt-sprinkle'; }
+			if ( 500 == $weatherid ) {
+				$icon = 'wi-night-alt-sprinkle'; }
+			if ( 501 == $weatherid ) {
+				$icon = 'wi-night-alt-rain'; }
+			if ( 502 == $weatherid ) {
+				$icon = 'wi-night-alt-rain'; }
+			if ( 503 == $weatherid ) {
+				$icon = 'wi-night-alt-rain'; }
+			if ( 504 == $weatherid ) {
+				$icon = 'wi-night-alt-rain'; }
+			if ( 511 == $weatherid ) {
+				$icon = 'wi-night-alt-rain-mix'; }
+			if ( 520 == $weatherid ) {
+				$icon = 'wi-night-alt-showers'; }
+			if ( 521 == $weatherid ) {
+				$icon = 'wi-night-alt-showers'; }
+			if ( 522 == $weatherid ) {
+				$icon = 'wi-night-alt-showers'; }
+			if ( 531 == $weatherid ) {
+				$icon = 'wi-night-alt-storm-showers'; }
+			if ( 600 == $weatherid ) {
+				$icon = 'wi-night-alt-snow'; }
+			if ( 601 == $weatherid ) {
+				$icon = 'wi-night-alt-sleet'; }
+			if ( 602 == $weatherid ) {
+				$icon = 'wi-night-alt-snow'; }
+			if ( 611 == $weatherid ) {
+				$icon = 'wi-night-alt-rain-mix'; }
+			if ( 612 == $weatherid ) {
+				$icon = 'wi-night-alt-rain-mix'; }
+			if ( 615 == $weatherid ) {
+				$icon = 'wi-night-alt-rain-mix'; }
+			if ( 616 == $weatherid ) {
+				$icon = 'wi-night-alt-rain-mix'; }
+			if ( 620 == $weatherid ) {
+				$icon = 'wi-night-alt-rain-mix'; }
+			if ( 621 == $weatherid ) {
+				$icon = 'wi-night-alt-snow'; }
+			if ( 622 == $weatherid ) {
+				$icon = 'wi-night-alt-snow'; }
+			if ( 701 == $weatherid ) {
+				$icon = 'wi-night-fog'; }
+			if ( 711 == $weatherid ) {
+				$icon = 'wi-smoke'; }
+			if ( 721 == $weatherid ) {
+				$icon = 'wi-day-haze'; }
+			if ( 731 == $weatherid ) {
+				$icon = 'wi-dust'; }
+			if ( 741 == $weatherid ) {
+				$icon = 'wi-night-fog'; }
+			if ( 761 == $weatherid ) {
+				$icon = 'wi-dust'; }
+			if ( 762 == $weatherid ) {
+				$icon = 'wi-dust'; }
+			if ( 781 == $weatherid ) {
+				$icon = 'wi-tornado'; }
+			if ( 800 == $weatherid ) {
+				$icon = 'wi-night-clear'; }
+			if ( 801 == $weatherid ) {
+				$icon = 'wi-night-alt-partly-cloudy'; }
+			if ( 802 == $weatherid ) {
+				$icon = 'wi-night-alt-cloudy'; }
+			if ( 803 == $weatherid ) {
+				$icon = 'wi-cloudy'; }
+			if ( 804 == $weatherid ) {
+				$icon = 'wi-cloudy'; }
+			if ( 900 == $weatherid ) {
+				$icon = 'wi-tornado'; }
+			if ( 902 == $weatherid ) {
+				$icon = 'wi-hurricane'; }
+			if ( 903 == $weatherid ) {
+				$icon = 'wi-snowflake-cold'; }
+			if ( 904 == $weatherid ) {
+				$icon = 'wi-hot'; }
+			if ( 906 == $weatherid ) {
+				$icon = 'wi-night-alt-hail'; }
+			if ( 957 == $weatherid ) {
+				$icon = 'wi-strong-wind'; }
 		}
 
 		return $icon;

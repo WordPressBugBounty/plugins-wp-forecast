@@ -262,7 +262,11 @@ if ( ! class_exists( 'WpfUvWidget' ) ) {
 			$out .= "<div class='wp-forecast-curr-left'>";
 
 			$uviconno = ( isset( $w['openuv']['uv'] ) ? round( $w['openuv']['uv'] ) : 0 );
+			error_log( print_r( $wpf_vars, true ) );
 			$uvicon   = 'UVIndex' . $uviconno . '.jpg';
+			if ( $wpf_vars['ouv_alticons'] ) {
+				$uvicon = 'A' . $uvicon;
+			}
 			$breite   = 0;
 			$hoehe    = 0;
 

@@ -27,6 +27,7 @@ $i   = 0;
 // generic functions.
 require_once 'funclib.php';
 require_once 'func-openweathermap.php';
+require_once 'func-openweathermap-v2.php';
 require_once 'func-openmeteo.php';
 require_once 'supp/supp.php';
 
@@ -140,15 +141,12 @@ function wpf_check_ajax() {
 	}
 
 	/**
-	 *  Check the URL $url if it is a usable transport.
+	 *  Check the URL $url.
 	 *
 	 * @param string $url The URL to check.
 	 */
 	function check_url( $url ) {
 		$erg = array();
-
-		// switch to wp-forecast transport.
-		switch_wpf_transport( true );
 
 		$wprr_args = array(
 			'timeout' => 30,
@@ -162,9 +160,6 @@ function wpf_check_ajax() {
 		$s    = time();
 		$resp = wp_remote_request( $url, $wprr_args );
 		$e    = time();
-
-		// switch to WordPress transport.
-		switch_wpf_transport( false );
 
 		$erg['duration'] = (int) ( $e - $s );
 
@@ -224,49 +219,17 @@ function wpf_check_ajax() {
 				echo wp_kses( $out, wpf_allowed_tags() );
 				die();
 			}
-			$url = 'https://api.openweathermap.org/data/2.5/onecall?lat=50.11&lon=8.68&appid=' . $wpf_vars['apikey1'] . '&exclude=minutely,hourly&units=1&lang=en';
+			$url = 'https://api.openweathermap.org/data/2.5/weather?lat=50.11&lon=8.68&appid=' . $wpf_vars['apikey1'] . '&exclude=minutely,hourly&units=1&lang=en';
 		}
 
 		if ( 'Open-Meteo' == $provider ) {
 			$url = 'https://api.open-meteo.com/v1/forecast?latitude=50.77664&longitude=6.08342&current_weather=true&timeformat=unixtime&timezone=GMT';
 		}
 
-		// remember selected transport.
-		$wp_transport = wpf_get_option( 'wp-forecast-wp-transport' );
-
 		// checking for standard connection method.
-		$res .= 'Checking default transport<br />';
-		wpf_update_option( 'wp-forecast-wp-transport', 'default' );
+		$res .= 'Checking using WordPress wp_remote_get<br />';
 		$erg  = check_url( $url );
 		$res .= show_check_result( $erg );
-
-		// checking fsockopen.
-		$res .= 'Checking fsockopen transport<br />';
-		wpf_update_option( 'wp-forecast-wp-transport', 'fsockopen' );
-		$erg  = check_url( $url );
-		$res .= show_check_result( $erg );
-
-		// checking exthttp.
-		$res .= 'Checking exthttp transport<br />';
-		wpf_update_option( 'wp-forecast-wp-transport', 'exthttp' );
-		$erg  = check_url( $url );
-		$res .= show_check_result( $erg );
-
-		// checking streams.
-		$res .= 'Checking streams transport<br />';
-		wpf_update_option( 'wp-forecast-wp-transport', 'streams' );
-		$erg  = check_url( $url );
-		$res .= show_check_result( $erg );
-
-		// checking curl.
-		$res .= 'Checking curl transport<br />';
-		wpf_update_option( 'wp-forecast-wp-transport', 'curl' );
-		$erg  = check_url( $url );
-		$res .= show_check_result( $erg );
-
-		// write back selected transport.
-		wpf_update_option( 'wp-forecast-wp-transport', $wp_transport );
-
 	}
 
 	echo wp_kses( $res, wpf_allowed_tags() );
@@ -354,12 +317,11 @@ function wpf_admin_form( $wpfcid = 'A', $widgetcall = 0 ) {
 	}
 
 	$count       = wpf_get_option( 'wp-forecast-count' );
-	$wpf_timeout = wpf_get_option( 'wp-forecast-timeout' );
 	$wpf_delopt  = wpf_get_option( 'wp-forecast-delopt' );
 	$wpf_ipstack = wpf_get_option( 'wp-forecast-ipstackapikey' );
 	$wpf_loadcss = wpf_get_option( 'wp-forecast-loadcss' );
 
-		// called via the options menu not from widgets.
+	// called via the options menu not from widgets.
 	if ( 0 == $widgetcall ) {
 		// load translation.
 		load_plugin_textdomain( 'wp-forecast', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
@@ -393,20 +355,9 @@ function wpf_admin_form( $wpfcid = 'A', $widgetcall = 0 ) {
 				widget_wp_forecast_init( $count );
 			}
 
-			// update timeout.
-			$timeout = ( isset( $_POST['wp-forecast-timeout'] ) ? (int) $_POST['wp-forecast-timeout'] : 1 );
-			if ( $timeout < 0 ) {
-				$timeout = 1;
-			}
-			wpf_update_option( 'wp-forecast-timeout', $timeout );
-
 			// update delopt.
 			$wpf_delopt = ( array_key_exists( 'wp-forecast-delopt', $_POST ) ? (int) ( 'on' == $_POST['wp-forecast-delopt'] ) : false );
 			wpf_update_option( 'wp-forecast-delopt', $wpf_delopt );
-
-			// update transport method.
-			$wpf_pretrans = ( isset( $_POST['wp-forecast-pre-transport'] ) ? (int) $_POST['wp-forecast-pre-transport'] : false );
-			wpf_update_option( 'wp-forecast-pre-transport', $wpf_pretrans );
 
 			// update ipstack apikey.
 			wpf_update_option( 'wp-forecast-ipstackapikey', ( isset( $_POST['wp-forecast-ipstackapikey'] ) ? sanitize_text_field( wp_unslash( $_POST['wp-forecast-ipstackapikey'] ) ) : '' ) );
@@ -416,7 +367,6 @@ function wpf_admin_form( $wpfcid = 'A', $widgetcall = 0 ) {
 			wpf_update_option( 'wp-forecast-loadcss', $wpf_loadcss );
 
 			$count       = wpf_get_option( 'wp-forecast-count' );
-			$wpf_timeout = wpf_get_option( 'wp-forecast-timeout' );
 			$wpf_delopt  = wpf_get_option( 'wp-forecast-delopt' );
 			$wpf_ipstack = wpf_get_option( 'wp-forecast-ipstackapikey' );
 			$wpf_loadcss = wpf_get_option( 'wp-forecast-loadcss' );
@@ -443,25 +393,6 @@ function wpf_admin_form( $wpfcid = 'A', $widgetcall = 0 ) {
 				$out .= "selected='selected' ";
 			}
 			$out .= ">$i</option>";
-		}
-		$out .= '</select></td>';
-
-		// print out timeout input field for transport.
-		// (timeout for data connection).
-		$out .= '<td>' . esc_attr__( 'Timeout for weatherprovider connections (secs.)?', 'wp-forecast' ) . ':</td>';
-		$out .= "<td><input id='wp-forecast-timeout' name='wp-forecast-timeout' type='text' size='3' maxlength='3' value='" . $wpf_timeout . "' />";
-		$out .= '</td></tr>';
-
-		// show transport method selection.
-		$out .= '<tr><td>' . esc_attr__( 'Preselect WordPress transfer method', 'wp-forecast' ) . ' :</td>';
-		$out .= "<td><select name='wp-forecast-pre-transport' id='wp-forecast-pre-transport' size='1' >";
-		$out .= "<option value='default'>" . esc_attr__( 'default', 'wp-forecast' ) . '</option>';
-
-		// get WordPress default transports.
-		$pre_trans = wpf_get_option( 'wp-forecast-pre-transport' );
-		$tlist     = get_wp_transports();
-		foreach ( $tlist as $t ) {
-			$out .= "<option value='$t'" . ( $t == $pre_trans ? 'selected="selected"' : '' ) . ">$t</option>";
 		}
 		$out .= '</select></td>';
 
@@ -621,6 +552,8 @@ function wpf_sub_admin_form( $wpfcid, $widgetcall ) {
 			'provider',
 			'csssprites',
 			'windicon',
+			'fonticon',
+			'fonticon_color',
 			'pdforecast',
 			'pdfirstday',
 			'timeoffset',
@@ -633,6 +566,7 @@ function wpf_sub_admin_form( $wpfcid, $widgetcall ) {
 			'ouv_uvmax',
 			'ouv_uv',
 			'ouv_apikey',
+			'ouv_alticons',
 		);
 
 		// fill up POST array with NULL vallues for unset keys.
@@ -656,6 +590,12 @@ function wpf_sub_admin_form( $wpfcid, $widgetcall ) {
 		if ( '' == $av['windicon'] ) {
 			$av['windicon'] = '0';
 		}
+		if ( '' == $av['fonticon'] ) {
+			$av['fonticon'] = '0';
+		}
+		if ( '' == $av['fonticon_color'] ) {
+			$av['fonticon_color'] = '#924da3';
+		}
 		if ( '' == $av['ouv_uv'] ) {
 			$av['ouv_uv'] = '0';
 		}
@@ -667,6 +607,9 @@ function wpf_sub_admin_form( $wpfcid, $widgetcall ) {
 		}
 		if ( '' == $av['ouv_safetime'] ) {
 			$av['ouv_safetime'] = '0';
+		}
+		if ( '' == $av['ouv_alticons'] ) {
+			$av['ouv_alticons'] = '0';
 		}
 
 		if ( '' == $av['visitorlocation'] ) {
@@ -809,7 +752,7 @@ function wpf_sub_admin_form( $wpfcid, $widgetcall ) {
 
 		
 	 <div style="float: left; width: 49%">
-         <p><b><?php echo esc_attr__( 'wp-forecast supports the free API from OpenMeteo or the OpenWeatherMap OneCall API either v2.5 or v3. If you use OpenWeatherMap please check if your plan includes the OneCall API.', 'wp-forecast' ); ?></b></p>
+		 <p><b><?php echo esc_attr__( 'wp-forecast supports the free API from OpenMeteo, the OpenWeatherMap v2.5 FreeAPI or OneCall API v3. If you use OpenWeatherMap v3 please check if your plan includes the OneCall API.', 'wp-forecast' ); ?></b></p>
 		 <p><b><?php echo esc_attr__( 'Weatherservice', 'wp-forecast' ); ?>:</b>
 		 <select name="service" id="service" size="1" onchange="apifields(document.woptions.service.value);">
 		   <option value="openweathermap" 
@@ -953,68 +896,29 @@ function wpf_sub_admin_form( $wpfcid, $widgetcall ) {
 
 		 <p>
 		 <b><?php echo esc_attr__( 'First day in pull-down', 'wp-forecast' ); ?>: </b><select name="pdfirstday" id="pdfirstday" size="1">
-   <option value="0" 
+		<?php
+		for ( $i = 0; $i < 10; $i++ ) {
+			echo "<option value='" . esc_attr( $i ) . "'";
+			if ( $i == $av['pdfirstday'] ) {
+				echo 'selected="selected"';
+			}
+			echo '>' . esc_attr( $i ) . '</option>';
+		}
+		?>
+		   </select></p>
+		   <script type="text/javascript">pdfields_update();</script>
+	
+	<p><input type="checkbox" name="fonticon" id="fonticon" value="1" onclick="fonticon_update();"
 	<?php
-	if ( '0' === $av['pdfirstday'] ) {
-		echo 'selected="selected"';}
+	if ( '1' === $av['fonticon'] ) {
+		echo 'checked="checked"';
+	}
 	?>
-	>0</option>
-   <option value="1" 
-	<?php
-	if ( '1' === $av['pdfirstday'] ) {
-		echo 'selected="selected"';}
-	?>
-	>1</option>
-   <option value="2" 
-	<?php
-	if ( '2' === $av['pdfirstday'] ) {
-		echo 'selected="selected"';}
-	?>
-	>2</option>
-   <option value="3" 
-	<?php
-	if ( '3' === $av['pdfirstday'] ) {
-		echo 'selected="selected"';}
-	?>
-	>3</option>
-   <option value="4" 
-	<?php
-	if ( '4' === $av['pdfirstday'] ) {
-		echo 'selected="selected"';}
-	?>
-	>4</option>
-   <option value="5" 
-	<?php
-	if ( '5' === $av['pdfirstday'] ) {
-		echo 'selected="selected"';}
-	?>
-	>5</option>
-   <option value="6" 
-	<?php
-	if ( '6' === $av['pdfirstday'] ) {
-		echo 'selected="selected"';}
-	?>
-	>6</option>
-   <option value="7" 
-	<?php
-	if ( '7' === $av['pdfirstday'] ) {
-		echo 'selected="selected"';}
-	?>
-	>7</option>
-   <option value="8" 
-	<?php
-	if ( '8' === $av['pdfirstday'] ) {
-		echo 'selected="selected"';}
-	?>
-	>8</option>
-   <option value="9" 
-	<?php
-	if ( '9' == $av['pdfirstday'] ) {
-		echo 'selected="selected"';}
-	?>
-	>9</option>
-   </select></p>
-   <script type="text/javascript">pdfields_update();</script>
+	 /> <b><?php echo esc_attr__( 'Use weatherfont for icons', 'wp-forecast' ); ?></b>
+	 <input class="fonticon_color" name="fonticon_color" id="fonticon_color" type="text" value="<?php echo esc_attr( $av['fonticon_color'] ); ?>" />
+	 <b><?php echo esc_attr__( 'Choose color for weatherfont icons', 'wp-forecast' ); ?></b>
+	</p>
+	
 	
    <p><input type="checkbox" name="windicon" id="windicon" value="1" 
 	<?php
@@ -1031,6 +935,7 @@ function wpf_sub_admin_form( $wpfcid, $widgetcall ) {
 	 /> <b><?php echo esc_attr__( 'Use CSS-Sprites for showing icons', 'wp-forecast' ); ?></b>
    </p>
    </div>
+   <script type="text/javascript">fonticon_update();</script>
 	   <!-- start of right column -->
 	   <div  style="padding-left: 2%; float: left; width: 49%;">
 	   <b><?php echo esc_attr__( 'Display Configuration', 'wp-forecast' ); ?></b>
@@ -1466,12 +1371,12 @@ function wpf_sub_admin_form( $wpfcid, $widgetcall ) {
 			echo '/>';
 			echo '<label for="oav_ozone">' . esc_attr__( 'Show Ozone', 'wp-forecast' ) . '&nbsp;&nbsp;&nbsp;</label>';
 
-			echo '<input type="checkbox" name="ouv_safetime" id="oav_safetime" value="1"';
-		if ( isset( $av['ouv_safetime'] ) && '1' === $av['ouv_safetime'] ) {
+			echo '<input type="checkbox" name="ouv_alticons" id="oav_alticons" value="1"';
+		if ( isset( $av['ouv_alticons'] ) && '1' === $av['ouv_alticons'] ) {
 			echo 'checked="checked"';
 		}
 			echo '/>';
-			echo '<label for="oav_safetime">' . esc_attr__( 'Show safe exposure time as tooltip', 'wp-forecast' ) . '&nbsp;&nbsp;&nbsp;</label>';
+			echo '<label for="oav_alticons">' . esc_attr__( 'Show alternative UV-icons', 'wp-forecast' ) . '&nbsp;&nbsp;&nbsp;</label>';
 
 			echo '</div>';
 		?>

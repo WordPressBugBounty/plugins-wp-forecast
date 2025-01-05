@@ -4,6 +4,9 @@
  * @package wp-forecast
  */
 
+/* add color picker */
+jQuery( document ).ready( function($){ jQuery( '.fonticon_color' ).wpColorPicker(); } );
+
 /* get the data for the new location */
 function wpf_search()
 {

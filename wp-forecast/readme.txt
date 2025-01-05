@@ -4,7 +4,7 @@ Donate link: http://www.tuxlog.de
 Tags: weather,forecast,widget,openweathermap,open-meteo
 Requires at least: 4.0
 Tested up to: 6.7
-Stable tag: 9.5
+Stable tag: 9.6
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 wp-forecast is a highly customizable plugin for wordpress, showing weather-data from open-meteo.com and/or openweathermap.com.
@@ -43,34 +43,31 @@ Credits:
  + Luís Reis					translation to portugues
  + Håkan Carlström, 
    Susanne Svensso				translation to swedish
- + Gabriele von der Ohe			translation to german with entities (for iso-8859-1 or latin1 blogs)
- + Martin Loyer/Jean-Pierre		translation to french
+ + Gabriele von der Ohe				translation to german with entities (for iso-8859-1 or latin1 blogs)
+ + Martin Loyer/Jean-Pierre			translation to french
  + Robert Lang					language file for en_US
- + Detti Giulio/Stefano Boeri	translation to italian
+ + Detti Giulio/Stefano Boeri			translation to italian
  + Eilif Nordseth				translation to norwegian
- + Michael S.R. Petersen		translation to dansk
- + Jaakko Kangosjärvi			translation to finish
- + Lukasz "linshi" Linhard		translation to polish
- + Castmir & Alejandro 			translation to spanish
+ + Michael S.R. Petersen			translation to dansk
+ + Jaakko Kangosjärvi				translation to finish
+ + Lukasz "linshi" Linhard			translation to polish
+ + Castmir & Alejandro 				translation to spanish
  + Tamas Koos					translation to hungarian
- + Valeria Pellegrini			translation to russian
+ + Valeria Pellegrini				translation to russian
  + Valentina Boeri				translation to romanian 
  + Roland Geci					translation to slovak
  + Pavel Soukenik				translation to czech
  + Pavel Karnaukhov				translation to ukraine
  + Zoran Maric					translation to serbian (latin)
- + Petar Petrov   	            translation to bulgarian
- + Udi Burg						translation to hebrew
+ + Petar Petrov   	        		translation to bulgarian
+ + Udi Burg					translation to hebrew
  + Uli Kozok					translation to indonesian
  + Ali Zemani					translation to persian
  + Amizda Idriz					translation to bosnian
- +Lovrenco Vladislavić 			translation to croatian
- 
+ + Lovrenco Vladislavić 			translation to croatian
  + All the others giving feedback about missing features and bugs.   
    Thank you very much for your contribution to wp-forecast.   
-
-
-== Installation ==
+ + Weather Icon Font by me Erik FLowers Weather Icons licensed under SIL OFL 1.1tallation 
 
 0. Install via the WordPress plugin admin dialog (search for wp-forecast) or
 
@@ -173,6 +170,15 @@ Probably you have enabled "Delete options during plugin deactivation?" and used 
 
 
 == Changelog ==
+
+= v9.6 (2025-01-05) =
+* added support for weather icon font and color
+* fixed wind icon for night time display
+* updated plugin for use with old OWM free data api v2.5 
+* fixed connection test for old OWM api v2.5
+* put forecast label into its own div 
+* added alternate UV Icon set from "der hase"
+* removed transport pre-selection since this is meanwhile covered by WP-Http
 
 = v9.5 (2024-10-28) =
 * added missing UV icon 5

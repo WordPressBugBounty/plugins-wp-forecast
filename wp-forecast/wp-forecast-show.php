@@ -182,31 +182,40 @@ function show( $wpfcid, $args, $wpf_vars ) {
 			$breite = 0;
 			$hoehe  = 0;
 
-			if ( file_exists( plugin_dir_path( __FILE__ ) . '/' . $w['icon'] ) ) {
-				$isize = getimagesize( plugin_dir_path( __FILE__ ) . '/' . $w['icon'] );
+			if ( ! $wpf_vars['fonticon'] ) {
+				if ( file_exists( plugin_dir_path( __FILE__ ) . '/' . $w['icon'] ) ) {
+					$isize = getimagesize( plugin_dir_path( __FILE__ ) . '/' . $w['icon'] );
 
-				if ( false != $isize ) {
-					$breite = $isize[0];
-					$hoehe  = $isize[1];
+					if ( false != $isize ) {
+						$breite = $isize[0];
+						$hoehe  = $isize[1];
+					}
 				}
-			}
 
-			if ( 1 == $wpf_vars['csssprites'] ) { // mit CSS Sprites.
-				$cssid = substr( $w['icon'], strpos( $w['icon'], '/' ) + 1, strrpos( $w['icon'], '.' ) - strpos( $w['icon'], '/' ) - 1 );
-				$out  .= "<div class='wp-forecast-curr-left wpfico" . esc_attr( $cssid ) . "'>&nbsp;</div>\n";
-			} else { // ohne CSS-Sprites.
-				$out .= "<img class='wp-forecast-curr-left' src='" . esc_attr( $plugin_path ) . '/' . esc_attr( $w['icon'] ) . "' alt='" . esc_attr( $w['shorttext'] ) . "' width='" . esc_attr( $breite ) . "' height='" . esc_attr( $hoehe ) . "' />\n";
+				if ( 1 == $wpf_vars['csssprites'] ) { // mit CSS Sprites.
+					$cssid = substr( $w['icon'], strpos( $w['icon'], '/' ) + 1, strrpos( $w['icon'], '.' ) - strpos( $w['icon'], '/' ) - 1 );
+					$out  .= "<div class='wp-forecast-curr-left wpfico" . esc_attr( $cssid ) . "'>&nbsp;</div>\n";
+				} else { // ohne CSS-Sprites.
+					$out .= "<img class='wp-forecast-curr-left' src='" . esc_attr( $plugin_path ) . '/' . esc_attr( $w['icon'] ) . "' alt='" . esc_attr( $w['shorttext'] ) . "' width='" . esc_attr( $breite ) . "' height='" . esc_attr( $hoehe ) . "' />\n";
+				}
+			} else {
+				$out .= "<i class='wpf-wi-icon wi " . esc_attr( $w['iconcode'] ) . "' style='color: " . $wpf_vars['fonticon_color'] . "'></i>\n";
 			}
 		}
 		$out .= '<br />';
 
 		// show windicon.
 		if ( '1' == $wpf_vars['windicon'] ) {
-			$breite        = 48;
-			$hoehe         = 48;
-			$wind_icon_url = $plugin_path . '/icons/wpf-' . $w['winddir_orig'] . '.png';
-			$out          .= "<img src='" . esc_url( $wind_icon_url ) . "' alt='" . esc_attr( $w['winddir'] ) . "' width='" . esc_attr( $breite ) . "' height='" . esc_attr( $hoehe ) . "' />\n";
+			if ( ! $wpf_vars['fonticon'] ) {
+				$breite        = 48;
+				$hoehe         = 48;
+				$wind_icon_url = $plugin_path . '/icons/wpf-' . $w['winddir_orig'] . '.png';
+				$out          .= "<img src='" . esc_url( $wind_icon_url ) . "' alt='" . esc_attr( $w['winddir'] ) . "' width='" . esc_attr( $breite ) . "' height='" . esc_attr( $hoehe ) . "' />\n";
+			} else {
+				 $out .= "<i class='wpf-wi-icon wi wi-wind wi-from-" . esc_attr( strtolower( $w['winddir_orig'] ) ) . "' style='color: " . $wpf_vars['fonticon_color'] . "'></i>\n";
+			}
 		}
+
 		$out .= '</div>';
 		$out .= "<div class='wp-forecast-curr-right'>";
 		$out .= '<div>';
@@ -336,9 +345,12 @@ function show( $wpfcid, $args, $wpf_vars ) {
 	// -------------------
 
 	// calc max forecast days depending on provider.
-	$maxdays = 7; // for openweathermap.
+	$maxdays = 7; // for openweathermap v3.
 	if ( 'openmeteo' == $wpf_vars['service'] ) {
 		$maxdays = 6;
+	}
+	if ( 'openweathermap' == $wpf_vars['service'] ) {
+		$maxdays = 5;
 	}
 
 	$out1 = "<div class=\"wp-forecast-fc\">\n";
@@ -346,12 +358,15 @@ function show( $wpfcid, $args, $wpf_vars ) {
 
 	for ( $i = 1;$i <= $maxdays;$i++ ) {
 		// check active forecast for day number i.
+		if ( ! isset( $w[ 'fc_obsdate_' . $i ] ) || trim( $w[ 'fc_obsdate_' . $i ] ) == '' ) {
+			continue;
+		}
 
 		if ( substr( $wpf_vars['daytime'], $i - 1, 1 ) == '1' || substr( $wpf_vars['nighttime'], $i - 1, 1 ) == '1' ) {
 			$out1 .= "<div class=\"wp-forecast-fc-oneday\">\n";
 			$out1 .= '<div class="wp-forecast-fc-head">';
-			$out1 .= wpf__( 'Forecast', $wpf_vars['wpf_language'] ) . ' ';
-			$out1 .= esc_attr( $w[ 'fc_obsdate_' . $i ] ) . "</div>\n";
+			$out1 .= '<div class="wp-forecast-fc-label">' . wpf__( 'Forecast', $wpf_vars['wpf_language'] ) . ' </div>';
+			$out1 .= ' ' . esc_attr( $w[ 'fc_obsdate_' . $i ] ) . "</div>\n";
 		}
 		// check for daytime information.
 
@@ -365,33 +380,42 @@ function show( $wpfcid, $args, $wpf_vars ) {
 				$breite = 0;
 				$hoehe  = 0;
 
-				if ( file_exists( plugin_dir_path( __FILE__ ) . '/' . $w[ 'fc_dt_icon_' . $i ] ) ) {
-					$isize = getimagesize( plugin_dir_path( __FILE__ ) . '/' . $w[ 'fc_dt_icon_' . $i ] );
+				if ( ! $wpf_vars['fonticon'] ) {
+					if ( file_exists( plugin_dir_path( __FILE__ ) . '/' . $w[ 'fc_dt_icon_' . $i ] ) ) {
+						$isize = getimagesize( plugin_dir_path( __FILE__ ) . '/' . $w[ 'fc_dt_icon_' . $i ] );
 
-					if ( false != $isize ) {
-						$breite = $isize[0];
-						$hoehe  = $isize[1];
+						if ( false != $isize ) {
+							$breite = $isize[0];
+							$hoehe  = $isize[1];
+						}
 					}
-				}
 
-				if ( 1 == $wpf_vars['csssprites'] ) { // mit CSS Sprites.
-					$cssid = substr( $w[ 'fc_dt_icon_' . $i ], strpos( $w[ 'fc_dt_icon_' . $i ], '/' ) + 1, strrpos( $w[ 'fc_dt_icon_' . $i ], '.' ) - strpos( $w[ 'fc_dt_icon_' . $i ], '/' ) - 1 );
-					$out1 .= "<div class='wp-forecast-curr-left wpfico" . esc_attr( $cssid ) . "'>&nbsp;</div>\n";
-				} else { // ohne CSS-Sprites.
-					$out1 .= "<img class='wp-forecast-fc-left' src='" . esc_attr( $plugin_path ) . '/' . esc_attr( $w[ 'fc_dt_icon_' . $i ] ) . "' alt='" . wpf__( $w[ 'fc_dt_iconcode_' . $i ], $wpf_vars['wpf_language'] ) . "' width='$breite' height='$hoehe' />";
+					if ( 1 == $wpf_vars['csssprites'] ) { // mit CSS Sprites.
+						$cssid = substr( $w[ 'fc_dt_icon_' . $i ], strpos( $w[ 'fc_dt_icon_' . $i ], '/' ) + 1, strrpos( $w[ 'fc_dt_icon_' . $i ], '.' ) - strpos( $w[ 'fc_dt_icon_' . $i ], '/' ) - 1 );
+						$out1 .= "<div class='wp-forecast-curr-left wpfico" . esc_attr( $cssid ) . "'>&nbsp;</div>\n";
+					} else { // ohne CSS-Sprites.
+						$out1 .= "<img class='wp-forecast-fc-left' src='" . esc_attr( $plugin_path ) . '/' . esc_attr( $w[ 'fc_dt_icon_' . $i ] ) . "' alt='" . wpf__( $w[ 'fc_dt_iconcode_' . $i ], $wpf_vars['wpf_language'] ) . "' width='$breite' height='$hoehe' />";
+					}
+				} else {
+					$out1 .= "<i class='wpf-wi-icon wi " . esc_attr( $w[ 'fc_dt_iconcode_' . $i ] ) . "' style='color: " . $wpf_vars['fonticon_color'] . "'></i>\n";
 				}
 			} else {
 				$out1 .= '&nbsp;';
 			}
 			$out1 .= '<br />';
-			// show windicon.
 
-			if ( isset( $windicon ) && '1' == $windicon ) {
-				$breite        = 48;
-				$hoehe         = 48;
-				$wind_icon_url = $plugin_path . '/icons/wpf-' . $w[ 'fc_dt_winddir_orig_' . $i ] . '.png';
-				$out1         .= "<img src='" . esc_url( $wind_icon_url ) . "' alt='" . esc_attr( $w[ 'fc_dt_winddir_' . $i ] ) . "' width='" . esc_attr( $breite ) . "' height='" . esc_attr( $hoehe ) . "' />\n";
+			// show windicon.
+			if ( isset( $wpf_vars['windicon'] ) && '1' == $wpf_vars['windicon'] ) {
+				if ( ! $wpf_vars['fonticon'] ) {
+					$breite        = 48;
+					$hoehe         = 48;
+					$wind_icon_url = $plugin_path . '/icons/wpf-' . $w[ 'fc_dt_winddir_orig_' . $i ] . '.png';
+					$out1         .= "<img src='" . esc_url( $wind_icon_url ) . "' alt='" . esc_attr( $w[ 'fc_dt_winddir_' . $i ] ) . "' width='" . esc_attr( $breite ) . "' height='" . esc_attr( $hoehe ) . "' />\n";
+				} else {
+					$out1 .= "<i class='wpf-wi-icon wi wi-wind wi-from-" . esc_attr( strtolower( $w[ 'fc_dt_winddir_orig_' . $i ] ) ) . "' style='color: " . $wpf_vars['fonticon_color'] . "'></i>\n";
+				}
 			}
+
 			$out1 .= "\n</div>\n"; // end of wp-forecast-fc-left.
 			$out1 .= "<div class='wp-forecast-fc-right'>";
 
@@ -399,18 +423,17 @@ function show( $wpfcid, $args, $wpf_vars ) {
 			if ( substr( $wpf_vars['dispconfig'], 11, 1 ) == '1' ) {
 				$out1 .= '<div>' . esc_attr( wpf__( $w[ 'fc_dt_desc_' . $i ], $wpf_vars['wpf_language'] ) ) . '</div>';
 			}
-			// show temperature.
 
+			// show temperature.
 			if ( substr( $wpf_vars['dispconfig'], 12, 1 ) == '1' ) {
 				$out1 .= '<div>';
 				$out1 .= esc_attr( $w[ 'fc_dt_htemp_' . $i ] ) . '</div>';
 			}
-			// show wind.
 
+			// show wind.
 			if ( substr( $wpf_vars['dispconfig'], 13, 1 ) == '1' ) {
 				$out1 .= '<div>' . wpf__( 'Winds', $wpf_vars['wpf_language'] ) . ': ' . esc_attr( $w[ 'fc_dt_windspeed_' . $i ] ) . ' ' . esc_attr( $w[ 'fc_dt_winddir_' . $i ] ) . '</div>';
 			}
-			// show windgusts.
 
 			// show precipitation.
 			if ( substr( $wpf_vars['dispconfig'], 31, 1 ) == '1' ) {
@@ -432,7 +455,7 @@ function show( $wpfcid, $args, $wpf_vars ) {
 			// show max uv index.
 
 			if ( substr( $wpf_vars['dispconfig'], 28, 1 ) == '1' ) {
-				$out1 .= '<div>' . wpf__( 'Max. UV index', $wpf_vars['wpf_language'] ) . ': ' . esc_attr( $w[ 'fc_dt_maxuv_' . $i ] ) . "</div>\n";
+				$out1 .= '<div>' . wpf__( 'max. UV index', $wpf_vars['wpf_language'] ) . ': ' . esc_attr( $w[ 'fc_dt_maxuv_' . $i ] ) . "</div>\n";
 			}
 			$out1 .= "</div></div>\n"; // end of wp-forecast-fc-right / block.
 
@@ -449,20 +472,24 @@ function show( $wpfcid, $args, $wpf_vars ) {
 				$breite   = 64;
 				$hoehe    = 40;
 
-				if ( file_exists( plugin_dir_path( __FILE__ ) . '/' . $w[ 'fc_nt_icon_' . $i ] ) ) {
-					$isize = getimagesize( plugin_dir_path( __FILE__ ) . '/' . $w[ 'fc_nt_icon_' . $i ] );
+				if ( ! $wpf_vars['fonticon'] ) {
+					if ( file_exists( plugin_dir_path( __FILE__ ) . '/' . $w[ 'fc_nt_icon_' . $i ] ) ) {
+						$isize = getimagesize( plugin_dir_path( __FILE__ ) . '/' . $w[ 'fc_nt_icon_' . $i ] );
 
-					if ( false != $isize ) {
-						$breite = $isize[0];
-						$hoehe  = $isize[1];
+						if ( false != $isize ) {
+							$breite = $isize[0];
+							$hoehe  = $isize[1];
+						}
 					}
-				}
 
-				if ( 1 == $wpf_vars['csssprites'] ) { // mit CSS Sprites.
-					$cssid = substr( $w[ 'fc_nt_icon_' . $i ], strpos( $w[ 'fc_nt_icon_' . $i ], '/' ) + 1, strrpos( $w[ 'fc_nt_icon_' . $i ], '.' ) - strpos( $w[ 'fc_nt_icon_' . $i ], '/' ) - 1 );
-					$out1 .= "<div class='wp-forecast-curr-left wpfico" . esc_attr( $cssid ) . "'>&nbsp;</div>\n";
-				} else { // ohne CSS-Sprites.
-					$out1 .= "<img class='wp-forecast-fc-left' src='" . esc_attr( $plugin_path ) . '/' . esc_attr( $w[ 'fc_nt_icon_' . $i ] ) . "' alt='" . wpf__( $w[ 'fc_nt_iconcode_' . $i ], $wpf_vars['wpf_language'] ) . "' width='$breite' height='$hoehe' />";
+					if ( 1 == $wpf_vars['csssprites'] ) { // mit CSS Sprites.
+						$cssid = substr( $w[ 'fc_nt_icon_' . $i ], strpos( $w[ 'fc_nt_icon_' . $i ], '/' ) + 1, strrpos( $w[ 'fc_nt_icon_' . $i ], '.' ) - strpos( $w[ 'fc_nt_icon_' . $i ], '/' ) - 1 );
+						$out1 .= "<div class='wp-forecast-curr-left wpfico" . esc_attr( $cssid ) . "'>&nbsp;</div>\n";
+					} else { // ohne CSS-Sprites.
+						$out1 .= "<img class='wp-forecast-fc-left' src='" . esc_attr( $plugin_path ) . '/' . esc_attr( $w[ 'fc_nt_icon_' . $i ] ) . "' alt='" . wpf__( $w[ 'fc_nt_iconcode_' . $i ], $wpf_vars['wpf_language'] ) . "' width='$breite' height='$hoehe' />";
+					}
+				} else {
+					$out1 .= "<i class='wpf-wi-icon wi " . esc_attr( $w[ 'fc_nt_iconcode_' . $i ] ) . "' style='color: " . $wpf_vars['fonticon_color'] . "'></i>\n";
 				}
 			} else {
 				$out1 .= '&nbsp;';
@@ -470,11 +497,15 @@ function show( $wpfcid, $args, $wpf_vars ) {
 			$out1 .= '<br />';
 
 			// show windicon.
-			if ( isset( $windicon ) && '1' == $windicon ) {
-				$breite        = 48;
-				$hoehe         = 48;
-				$wind_icon_url = $plugin_path . '/icons/wpf-' . $w[ 'fc_nt_winddir_orig_' . $i ] . '.png';
-				$out1         .= "<img src='" . esc_url( $wind_icon_url ) . "' alt='" . esc_attr( $w[ 'fc_nt_winddir_' . $i ] ) . "' width='" . esc_attr( $breite ) . "' height='" . esc_attr( $hoehe ) . "' />\n";
+			if ( isset( $wpf_vars['windicon'] ) && '1' == $wpf_vars['windicon'] ) {
+				if ( ! $wpf_vars['fonticon'] ) {
+					$breite        = 48;
+					$hoehe         = 48;
+					$wind_icon_url = $plugin_path . '/icons/wpf-' . $w[ 'fc_nt_winddir_orig_' . $i ] . '.png';
+					$out1         .= "<img src='" . esc_url( $wind_icon_url ) . "' alt='" . esc_attr( $w[ 'fc_nt_winddir_' . $i ] ) . "' width='" . esc_attr( $breite ) . "' height='" . esc_attr( $hoehe ) . "' />\n";
+				} else {
+					$out1 .= "<i class='wpf-wi-icon wi wi-wind wi-from-" . esc_attr( strtolower( $w[ 'fc_nt_winddir_orig_' . $i ] ) ) . "' style='color: " . $wpf_vars['fonticon_color'] . "'></i>\n";
+				}
 			}
 			$out1 .= "\n</div>\n<div class='wp-forecast-fc-right'>";
 

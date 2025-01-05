@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp-forecast 1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-05 14:40+0200\n"
+"POT-Creation-Date: 2025-01-05 08:53+0100\n"
 "PO-Revision-Date: 2014-10-17 12:49+0100\n"
 "Last-Translator: Amidža Idriz <bijeljina@bahnhof.se>\n"
 "Language-Team: \n"
@@ -13,11 +13,11 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.5\n"
 
-#: class-wpf-widget.php:97 class-wpfuvwidget.php:106 wp-forecast-admin.php:315
+#: class-wpf-widget.php:97 class-wpfuvwidget.php:106 wp-forecast-admin.php:278
 msgid "Title:"
 msgstr "Naslov:"
 
-#: class-wpf-widget.php:101 class-wpfuvwidget.php:110 wp-forecast-admin.php:505
+#: class-wpf-widget.php:101 class-wpfuvwidget.php:110 wp-forecast-admin.php:436
 msgid "Available widgets"
 msgstr "Raspoloživi dodaci"
 
@@ -33,389 +33,389 @@ msgstr ""
 msgid "time"
 msgstr "Vrijeme"
 
-#: class-wpfuvwidget.php:288
+#: class-wpfuvwidget.php:292
 #, fuzzy
 msgid "Current UV-Index"
 msgstr "UV indeks"
 
-#: class-wpfuvwidget.php:292
+#: class-wpfuvwidget.php:296
 #, fuzzy
 msgid "Max. UV-Index"
 msgstr "Maksimalni UV indeks"
 
-#: class-wpfuvwidget.php:296 wp-forecast-show.php:305
+#: class-wpfuvwidget.php:300 wp-forecast-show.php:314
 #, fuzzy
 msgid "Ozone"
 msgstr "UV indeks"
 
-#: class-wpfuvwidget.php:306 class-wpfuvwidget.php:308
+#: class-wpfuvwidget.php:310 class-wpfuvwidget.php:312
 msgid "Safe Exposure Time for Skin Type"
 msgstr ""
 
-#: func-openmeteo.php:177
+#: func-openmeteo.php:178
 msgid "Rain"
 msgstr "Kiša"
 
-#: func-openmeteo.php:181 func-openweathermap.php:594
+#: func-openmeteo.php:182 func-openweathermap.php:956
 msgid "Snow"
 msgstr "Snijeg"
 
-#: func-openmeteo.php:451 func-openmeteo.php:536 func-openweathermap.php:664
+#: func-openmeteo.php:465 func-openmeteo.php:550 func-openweathermap.php:1026
 #, fuzzy
 msgid "Clear sky"
 msgstr "Vedro"
 
-#: func-openmeteo.php:454
+#: func-openmeteo.php:468
 #, fuzzy
 msgid "Mainly clear"
 msgstr "Uglavnom vedro"
 
-#: func-openmeteo.php:457
+#: func-openmeteo.php:471
 #, fuzzy
 msgid "Partly cloudy"
 msgstr "Djelimično oblačno"
 
-#: func-openmeteo.php:460
+#: func-openmeteo.php:474
 #, fuzzy
 msgid "Overcast"
 msgstr "Prognoza"
 
-#: func-openmeteo.php:463 func-openweathermap.php:641
+#: func-openmeteo.php:477 func-openweathermap.php:1003
 msgid "Fog"
 msgstr "Magla"
 
-#: func-openmeteo.php:466
+#: func-openmeteo.php:480
 msgid "Rime fog"
 msgstr ""
 
-#: func-openmeteo.php:469 func-openweathermap.php:524
+#: func-openmeteo.php:483 func-openweathermap.php:886
 #, fuzzy
 msgid "Light drizzle"
 msgstr "Hladna sitna kiša"
 
-#: func-openmeteo.php:472
+#: func-openmeteo.php:486
 #, fuzzy
 msgid "Moderate drizzle"
 msgstr "Hladna sitna kiša"
 
-#: func-openmeteo.php:475
+#: func-openmeteo.php:489
 #, fuzzy
 msgid "Dense drizzle"
 msgstr "Hladna sitna kiša"
 
-#: func-openmeteo.php:478
+#: func-openmeteo.php:492
 #, fuzzy
 msgid "Light freezing drizzle"
 msgstr "Hladna sitna kiša"
 
-#: func-openmeteo.php:481
+#: func-openmeteo.php:495
 #, fuzzy
 msgid "Dense freezing drizzle"
 msgstr "Moguća sitna hladna kiša"
 
-#: func-openmeteo.php:484
+#: func-openmeteo.php:498
 #, fuzzy
 msgid "Slight rain"
 msgstr "Lagan snijeg"
 
-#: func-openmeteo.php:487 func-openweathermap.php:559
+#: func-openmeteo.php:501 func-openweathermap.php:921
 #, fuzzy
 msgid "Moderate rain"
 msgstr "Mogući pljuskovi"
 
-#: func-openmeteo.php:490 func-openweathermap.php:562
+#: func-openmeteo.php:504 func-openweathermap.php:924
 #, fuzzy
 msgid "Heavy rain"
 msgstr "Jaka kiša"
 
-#: func-openmeteo.php:493
+#: func-openmeteo.php:507
 #, fuzzy
 msgid "Light freezing rain"
 msgstr "Ledena kiša"
 
-#: func-openmeteo.php:496
+#: func-openmeteo.php:510
 #, fuzzy
 msgid "Heavy freezing rain"
 msgstr "Moguća ledena kiša"
 
-#: func-openmeteo.php:499
+#: func-openmeteo.php:513
 #, fuzzy
 msgid "Slight snow fall"
 msgstr "Lagan snijeg"
 
-#: func-openmeteo.php:502
+#: func-openmeteo.php:516
 #, fuzzy
 msgid "Moderate snow fall"
 msgstr "Jak snijeg"
 
-#: func-openmeteo.php:505
+#: func-openmeteo.php:519
 #, fuzzy
 msgid "Heavy snow fall"
 msgstr "Jak snijeg"
 
-#: func-openmeteo.php:508
+#: func-openmeteo.php:522
 #, fuzzy
 msgid "Snow grains"
 msgstr "Jak snijeg"
 
-#: func-openmeteo.php:511
+#: func-openmeteo.php:525
 #, fuzzy
 msgid "Slight rain showers"
 msgstr "Pljuskovi"
 
-#: func-openmeteo.php:514
+#: func-openmeteo.php:528
 #, fuzzy
 msgid "Moderate rain showers"
 msgstr "Mogući pljuskovi"
 
-#: func-openmeteo.php:517
+#: func-openmeteo.php:531
 #, fuzzy
 msgid "Violent rain showers"
 msgstr "Pljuskovi"
 
-#: func-openmeteo.php:520
+#: func-openmeteo.php:534
 #, fuzzy
 msgid "Slight snow showers"
 msgstr "Jak snijeg"
 
-#: func-openmeteo.php:523
+#: func-openmeteo.php:537
 #, fuzzy
 msgid "Heavy snow showers"
 msgstr "Jak snijeg"
 
-#: func-openmeteo.php:526 func-openweathermap.php:501
+#: func-openmeteo.php:540 func-openweathermap.php:863
 #, fuzzy
 msgid "Thunderstorm"
 msgstr "Grmljavina"
 
-#: func-openmeteo.php:529
+#: func-openmeteo.php:543
 msgid "Thunderstorm with light hail"
 msgstr ""
 
-#: func-openmeteo.php:532
+#: func-openmeteo.php:546
 msgid "Thunderstorm with heavy hail"
 msgstr ""
 
-#: func-openweathermap.php:484
+#: func-openweathermap.php:846
 msgid "clear sky"
 msgstr ""
 
-#: func-openweathermap.php:489
+#: func-openweathermap.php:851
 msgid "Thunderstorm with light rain"
 msgstr ""
 
-#: func-openweathermap.php:492
+#: func-openweathermap.php:854
 #, fuzzy
 msgid "Thunderstorm with rain"
 msgstr "Grmljavina"
 
-#: func-openweathermap.php:495
+#: func-openweathermap.php:857
 msgid "Thunderstorm with heavy rain"
 msgstr ""
 
-#: func-openweathermap.php:498
+#: func-openweathermap.php:860
 #, fuzzy
 msgid "Light thunderstorm"
 msgstr "Grmljavina"
 
-#: func-openweathermap.php:504
+#: func-openweathermap.php:866
 #, fuzzy
 msgid "Heavy thunderstorm"
 msgstr "Grmljavina"
 
-#: func-openweathermap.php:507
+#: func-openweathermap.php:869
 #, fuzzy
 msgid "Ragged thunderstorm"
 msgstr "Grmljavina"
 
-#: func-openweathermap.php:510
+#: func-openweathermap.php:872
 msgid "Thunderstorm with light drizzle"
 msgstr ""
 
-#: func-openweathermap.php:513
+#: func-openweathermap.php:875
 #, fuzzy
 msgid "Thunderstorm with drizzle"
 msgstr "Grmljavina"
 
-#: func-openweathermap.php:516
+#: func-openweathermap.php:878
 msgid "Thunderstorm with heavy drizzle"
 msgstr ""
 
-#: func-openweathermap.php:527
+#: func-openweathermap.php:889
 msgid "Drizzle"
 msgstr "Sitna kiša"
 
-#: func-openweathermap.php:530
+#: func-openweathermap.php:892
 #, fuzzy
 msgid "Heavy drizzle"
 msgstr "Hladna sitna kiša"
 
-#: func-openweathermap.php:533
+#: func-openweathermap.php:895
 #, fuzzy
 msgid "Light drizzle rain"
 msgstr "Hladna sitna kiša"
 
-#: func-openweathermap.php:536
+#: func-openweathermap.php:898
 #, fuzzy
 msgid "Drizzle rain"
 msgstr "Sitna kiša"
 
-#: func-openweathermap.php:539
+#: func-openweathermap.php:901
 #, fuzzy
 msgid "Heavy drizzle rain"
 msgstr "Moguća ledena kiša"
 
-#: func-openweathermap.php:542
+#: func-openweathermap.php:904
 msgid "Shower rain and drizzle"
 msgstr ""
 
-#: func-openweathermap.php:545
+#: func-openweathermap.php:907
 #, fuzzy
 msgid "Heavy shower rain and drizzle"
 msgstr "Jaka kiša"
 
-#: func-openweathermap.php:548
+#: func-openweathermap.php:910
 #, fuzzy
 msgid "Shower drizzle"
 msgstr "Hladna sitna kiša"
 
-#: func-openweathermap.php:556
+#: func-openweathermap.php:918
 #, fuzzy
 msgid "Light rain"
 msgstr "Lagan snijeg"
 
-#: func-openweathermap.php:565
+#: func-openweathermap.php:927
 #, fuzzy
 msgid "Very heavy rain"
 msgstr "Jaka kiša"
 
-#: func-openweathermap.php:568
+#: func-openweathermap.php:930
 msgid "Extreme rain"
 msgstr ""
 
-#: func-openweathermap.php:571
+#: func-openweathermap.php:933
 #, fuzzy
 msgid "Freezing rain"
 msgstr "Ledena kiša"
 
-#: func-openweathermap.php:574
+#: func-openweathermap.php:936
 #, fuzzy
 msgid "Light shower rain"
 msgstr "Lagan snijeg"
 
-#: func-openweathermap.php:577
+#: func-openweathermap.php:939
 #, fuzzy
 msgid "Shower rain"
 msgstr "Jaka kiša"
 
-#: func-openweathermap.php:580
+#: func-openweathermap.php:942
 #, fuzzy
 msgid "Heavy shower rain"
 msgstr "Jaka kiša"
 
-#: func-openweathermap.php:583
+#: func-openweathermap.php:945
 msgid "Ragged shower rain"
 msgstr ""
 
-#: func-openweathermap.php:591
+#: func-openweathermap.php:953
 #, fuzzy
 msgid "Light snow"
 msgstr "Lagan snijeg"
 
-#: func-openweathermap.php:597
+#: func-openweathermap.php:959
 #, fuzzy
 msgid "Heavy snow"
 msgstr "Jak snijeg"
 
-#: func-openweathermap.php:600
+#: func-openweathermap.php:962
 msgid "Sleet"
 msgstr "Susnježica"
 
-#: func-openweathermap.php:603
+#: func-openweathermap.php:965
 #, fuzzy
 msgid "Light shower sleet"
 msgstr "Lagan snijeg"
 
-#: func-openweathermap.php:606
+#: func-openweathermap.php:968
 msgid "Shower sleet"
 msgstr ""
 
-#: func-openweathermap.php:609
+#: func-openweathermap.php:971
 #, fuzzy
 msgid "Light rain and snow"
 msgstr "Pljuskovi"
 
-#: func-openweathermap.php:612
+#: func-openweathermap.php:974
 msgid "Rain and snow"
 msgstr ""
 
-#: func-openweathermap.php:615
+#: func-openweathermap.php:977
 #, fuzzy
 msgid "Light shower snow"
 msgstr "Jak snijeg"
 
-#: func-openweathermap.php:618
+#: func-openweathermap.php:980
 #, fuzzy
 msgid "Shower snow"
 msgstr "Pljuskovi"
 
-#: func-openweathermap.php:621
+#: func-openweathermap.php:983
 #, fuzzy
 msgid "Heavy shower snow"
 msgstr "Jak snijeg"
 
-#: func-openweathermap.php:629
+#: func-openweathermap.php:991
 msgid "Mist"
 msgstr ""
 
-#: func-openweathermap.php:632
+#: func-openweathermap.php:994
 msgid "Smoke"
 msgstr ""
 
-#: func-openweathermap.php:635
+#: func-openweathermap.php:997
 msgid "Haze"
 msgstr ""
 
-#: func-openweathermap.php:638 func-openweathermap.php:647
+#: func-openweathermap.php:1000 func-openweathermap.php:1009
 msgid "Dust"
 msgstr ""
 
-#: func-openweathermap.php:644
+#: func-openweathermap.php:1006
 msgid "Sand"
 msgstr ""
 
-#: func-openweathermap.php:650
+#: func-openweathermap.php:1012
 msgid "Ash"
 msgstr ""
 
-#: func-openweathermap.php:653
+#: func-openweathermap.php:1015
 msgid "Squalls"
 msgstr ""
 
-#: func-openweathermap.php:656
+#: func-openweathermap.php:1018
 msgid "Tornado"
 msgstr ""
 
-#: func-openweathermap.php:667
+#: func-openweathermap.php:1029
 msgid "Few clouds"
 msgstr ""
 
-#: func-openweathermap.php:670
+#: func-openweathermap.php:1032
 #, fuzzy
 msgid "Scattered clouds"
 msgstr "Mjestimični pljuskovi"
 
-#: func-openweathermap.php:673
+#: func-openweathermap.php:1035
 #, fuzzy
 msgid "Broken clouds"
 msgstr "Povećana naoblaka"
 
-#: func-openweathermap.php:676
+#: func-openweathermap.php:1038
 #, fuzzy
 msgid "Overcast clouds"
 msgstr "Prognoza"
 
-#: funclib.php:879
+#: funclib.php:630
 msgid ""
 "As of September 10, 2023 it seems Accuweather has discontinued the free api-"
 "service. \n"
@@ -430,384 +430,379 @@ msgstr ""
 msgid "wp-forecast shortcode: This browser does not support iframes."
 msgstr "Upozorenje: Ovaj internet preglednik ne podržava iframes."
 
-#: wp-forecast-admin.php:94
+#: wp-forecast-admin.php:95
 #, fuzzy
 msgid "Searchresults"
 msgstr "Rezultati pretrage"
 
-#: wp-forecast-admin.php:97
+#: wp-forecast-admin.php:98
 msgid "Please enter a non empty searchstring"
 msgstr "Upišite termin za pretragu"
 
-#: wp-forecast-admin.php:99
+#: wp-forecast-admin.php:100
 #, fuzzy
 msgid "Please select a location"
 msgstr "Odaberite grad i postavite lokaciju."
 
-#: wp-forecast-admin.php:107
+#: wp-forecast-admin.php:108
 msgid "Open-Meteo Hits"
 msgstr ""
 
-#: wp-forecast-admin.php:214 wp-forecast-admin.php:223
+#: wp-forecast-admin.php:209 wp-forecast-admin.php:218
 msgid "You have to set the API-Key to test OpenWeatherMap."
 msgstr ""
 
-#: wp-forecast-admin.php:319
+#: wp-forecast-admin.php:282
 msgid "widget_hint"
 msgstr "dodatak_savjet"
 
-#: wp-forecast-admin.php:434
+#: wp-forecast-admin.php:384
 msgid "Global Settings"
 msgstr ""
 
-#: wp-forecast-admin.php:437
+#: wp-forecast-admin.php:387
 msgid "How many wp-forecast widgets would you like?"
 msgstr "Koliko dodataka hoćete?"
 
-#: wp-forecast-admin.php:451
-msgid "Timeout for weatherprovider connections (secs.)?"
-msgstr "Timeout za konekciju k provajderu (sek.)?"
-
-#: wp-forecast-admin.php:456
-#, fuzzy
-msgid "Preselect WordPress transfer method"
-msgstr "Odaberite wordpress transfer metodu"
-
-#: wp-forecast-admin.php:458
-msgid "default"
-msgstr "zadano"
-
-#: wp-forecast-admin.php:469
+#: wp-forecast-admin.php:400
 msgid "Delete options during plugin deactivation?"
 msgstr "Obrisati opcije prilikom dektivacije?"
 
-#: wp-forecast-admin.php:478
+#: wp-forecast-admin.php:409
 msgid "API key to use location from ipstack.com "
 msgstr ""
 
-#: wp-forecast-admin.php:483
+#: wp-forecast-admin.php:414
 msgid "Do not load default CSS"
 msgstr ""
 
-#: wp-forecast-admin.php:493
+#: wp-forecast-admin.php:424
 #, fuzzy
 msgid "Update global options"
 msgstr "Opcije ažuriranja"
 
-#: wp-forecast-admin.php:499
+#: wp-forecast-admin.php:430
 msgid "Check connection to Weatherprovider"
 msgstr "Provjerite vezu k pružatelju usluge"
 
-#: wp-forecast-admin.php:529
+#: wp-forecast-admin.php:460
 msgid "Select widget"
 msgstr "Odaberi dodatak"
 
-#: wp-forecast-admin.php:774
+#: wp-forecast-admin.php:717
 msgid "Settings successfully updated"
 msgstr "Podešavanja su uspješno ažurirana."
 
-#: wp-forecast-admin.php:776
+#: wp-forecast-admin.php:719
 msgid "You have to change a field to update settings."
 msgstr "Morate prvo napraviti izmjenu kako bi izvršili ažuriranje."
 
-#: wp-forecast-admin.php:804
+#: wp-forecast-admin.php:747
 msgid "WP-Forecast Setup"
 msgstr "WP-Forecast podešavanja."
 
-#: wp-forecast-admin.php:812
+#: wp-forecast-admin.php:755
 msgid ""
-"wp-forecast supports the free API from OpenMeteo or the OpenWeatherMap "
-"OneCall API either v2.5 or v3. If you use OpenWeatherMap please check if "
-"your plan includes the OneCall API."
+"wp-forecast supports the free API from OpenMeteo, the OpenWeatherMap v2.5 "
+"FreeAPI or OneCall API v3. If you use OpenWeatherMap v3 please check if your "
+"plan includes the OneCall API."
 msgstr ""
 
-#: wp-forecast-admin.php:813
+#: wp-forecast-admin.php:756
 msgid "Weatherservice"
 msgstr "Izaberite servis"
 
-#: wp-forecast-admin.php:820
+#: wp-forecast-admin.php:763
 #, fuzzy
 msgid "OpenWeathermap"
 msgstr "Prognoza"
 
-#: wp-forecast-admin.php:826
+#: wp-forecast-admin.php:769
 #, fuzzy
 msgid "OpenWeatherMap v3"
 msgstr "Prognoza"
 
-#: wp-forecast-admin.php:833
+#: wp-forecast-admin.php:776
 msgid "Open-Meteo"
 msgstr ""
 
-#: wp-forecast-admin.php:836
+#: wp-forecast-admin.php:779
 msgid "API-Key"
 msgstr ""
 
-#: wp-forecast-admin.php:840
+#: wp-forecast-admin.php:783
 msgid "Location"
 msgstr "Lokacija"
 
-#: wp-forecast-admin.php:855
+#: wp-forecast-admin.php:798
 #, fuzzy
 msgid "Use visitors location"
 msgstr "Postavi lokaciju"
 
-#: wp-forecast-admin.php:858
+#: wp-forecast-admin.php:801
 msgid "Latitude"
 msgstr ""
 
-#: wp-forecast-admin.php:862
+#: wp-forecast-admin.php:805
 msgid "Longitude"
 msgstr ""
 
-#: wp-forecast-admin.php:866
+#: wp-forecast-admin.php:809
 msgid "Locationname"
 msgstr "Lokacija"
 
-#: wp-forecast-admin.php:868
+#: wp-forecast-admin.php:811
 msgid "Refresh cache after"
 msgstr "Osvježi privremeni spremnik nakon"
 
-#: wp-forecast-admin.php:870
+#: wp-forecast-admin.php:813
 msgid "secs."
 msgstr "sek"
 
-#: wp-forecast-admin.php:876
+#: wp-forecast-admin.php:819
 msgid "Use metric units"
 msgstr "Korisiti metričke jedinice"
 
-#: wp-forecast-admin.php:885
+#: wp-forecast-admin.php:828
 msgid "Use current time"
 msgstr "Koristi trenutno vrijeme"
 
-#: wp-forecast-admin.php:886
+#: wp-forecast-admin.php:829
 msgid "Time-Offset"
 msgstr "Vremenska razlika"
 
-#: wp-forecast-admin.php:887
+#: wp-forecast-admin.php:830
 msgid "minutes"
 msgstr "minuta"
 
-#: wp-forecast-admin.php:890
+#: wp-forecast-admin.php:833
 msgid "Windspeed-Unit"
 msgstr "Jedinica za mjerenje brzine vijetra"
 
-#: wp-forecast-admin.php:896
+#: wp-forecast-admin.php:839
 msgid "Meter/Second (m/s)"
 msgstr "Metar u sekundi (m/s)"
 
-#: wp-forecast-admin.php:902
+#: wp-forecast-admin.php:845
 msgid "Kilometer/Hour (km/h)"
 msgstr "Kilometar na sat(km/h)"
 
-#: wp-forecast-admin.php:908
+#: wp-forecast-admin.php:851
 msgid "Miles/Hour (mph)"
 msgstr "Milja na sat (mph)"
 
-#: wp-forecast-admin.php:914
+#: wp-forecast-admin.php:857
 msgid "Knots (kts)"
 msgstr "Čvorovi (kts)"
 
-#: wp-forecast-admin.php:920
+#: wp-forecast-admin.php:863
 msgid "Beaufort (bft)"
 msgstr "Beaufort (bft)"
 
-#: wp-forecast-admin.php:927
+#: wp-forecast-admin.php:870
 msgid "Language"
 msgstr "Jezik"
 
-#: wp-forecast-admin.php:951
+#: wp-forecast-admin.php:894
 msgid "Show forecast as ajax pull-down"
 msgstr "Prikaži prognozu sa ajax padajućim izbornikom"
 
-#: wp-forecast-admin.php:955
+#: wp-forecast-admin.php:898
 msgid "First day in pull-down"
 msgstr "Prvi dan u padajućem izborniku"
 
-#: wp-forecast-admin.php:1024
+#: wp-forecast-admin.php:917
+msgid "Use weatherfont for icons"
+msgstr ""
+
+#: wp-forecast-admin.php:919
+msgid "Choose color for weatherfont icons"
+msgstr ""
+
+#: wp-forecast-admin.php:928
 msgid "Show wind condition as icon"
 msgstr "Prikaži podatke o vjetru kao ikonu"
 
-#: wp-forecast-admin.php:1031
+#: wp-forecast-admin.php:935
 msgid "Use CSS-Sprites for showing icons"
 msgstr "Koristi CSS spriteove kod prikaza ikona"
 
-#: wp-forecast-admin.php:1036
+#: wp-forecast-admin.php:941
 msgid "Display Configuration"
 msgstr "Prikaz Konfiguracije"
 
-#: wp-forecast-admin.php:1040
+#: wp-forecast-admin.php:945
 msgid "Current Conditions"
 msgstr "Trenutni uvjeti"
 
-#: wp-forecast-admin.php:1041
+#: wp-forecast-admin.php:946
 msgid "Forecast Day"
 msgstr "Prognoza za Dan"
 
-#: wp-forecast-admin.php:1042
+#: wp-forecast-admin.php:947
 msgid "Forecast Night"
 msgstr "Prognoza za Noć"
 
-#: wp-forecast-admin.php:1045
+#: wp-forecast-admin.php:950
 msgid "Icon"
 msgstr "Ikonica"
 
-#: wp-forecast-admin.php:1066
+#: wp-forecast-admin.php:971
 msgid "Date"
 msgstr "Datum"
 
-#: wp-forecast-admin.php:1077
+#: wp-forecast-admin.php:982
 msgid "Time"
 msgstr "Vrijeme"
 
-#: wp-forecast-admin.php:1088
+#: wp-forecast-admin.php:993
 msgid "Short Description"
 msgstr "Kratak opis"
 
-#: wp-forecast-admin.php:1109
+#: wp-forecast-admin.php:1014
 msgid "Temperature"
 msgstr "Temperature"
 
-#: wp-forecast-admin.php:1130
+#: wp-forecast-admin.php:1035
 msgid "Realfeel"
 msgstr "Subjektivno"
 
-#: wp-forecast-admin.php:1141 wp-forecast-show.php:240
+#: wp-forecast-admin.php:1046 wp-forecast-show.php:249
 msgid "Pressure"
 msgstr "Pritisak"
 
-#: wp-forecast-admin.php:1152 wp-forecast-show.php:250
+#: wp-forecast-admin.php:1057 wp-forecast-show.php:259
 msgid "Humidity"
 msgstr "Vlažnost"
 
-#: wp-forecast-admin.php:1163
+#: wp-forecast-admin.php:1068
 msgid "Wind"
 msgstr "Vjetar"
 
-#: wp-forecast-admin.php:1184 wp-forecast-show.php:260 wp-forecast-show.php:430
-#: wp-forecast-show.php:498
+#: wp-forecast-admin.php:1089 wp-forecast-show.php:269 wp-forecast-show.php:453
+#: wp-forecast-show.php:529
 msgid "Windgusts"
 msgstr "Naleti vjetra"
 
-#: wp-forecast-admin.php:1206
+#: wp-forecast-admin.php:1111
 #, fuzzy
 msgid "Precipitation"
 msgstr "Kratak opis"
 
-#: wp-forecast-admin.php:1228 wp-forecast-show.php:265
+#: wp-forecast-admin.php:1133 wp-forecast-show.php:274
 msgid "UV-Index"
 msgstr "UV indeks"
 
-#: wp-forecast-admin.php:1250 wp-forecast-show.php:285
+#: wp-forecast-admin.php:1155 wp-forecast-show.php:294
 msgid "Sunrise"
 msgstr "Izlazak sunca"
 
-#: wp-forecast-admin.php:1261 wp-forecast-show.php:290
+#: wp-forecast-admin.php:1166 wp-forecast-show.php:299
 msgid "Sunset"
 msgstr "Zalazak sunca"
 
-#: wp-forecast-admin.php:1272
+#: wp-forecast-admin.php:1177
 msgid "Copyright"
 msgstr "Copyright"
 
-#: wp-forecast-admin.php:1283
+#: wp-forecast-admin.php:1188
 msgid "Link to Weatherprovider"
 msgstr "Link k pružatelju usluge"
 
-#: wp-forecast-admin.php:1290
+#: wp-forecast-admin.php:1195
 msgid "Open in new Window"
 msgstr "Otvoriti u novom prozoru"
 
-#: wp-forecast-admin.php:1302 wp-forecast-show.php:353
+#: wp-forecast-admin.php:1207 wp-forecast-show.php:368
 msgid "Forecast"
 msgstr "Prognoza"
 
-#: wp-forecast-admin.php:1307
+#: wp-forecast-admin.php:1212
 msgid "All"
 msgstr "Sve"
 
-#: wp-forecast-admin.php:1308 wp-forecast-admin.php:1309
-#: wp-forecast-admin.php:1310 wp-forecast-admin.php:1311
-#: wp-forecast-admin.php:1312 wp-forecast-admin.php:1313
-#: wp-forecast-admin.php:1314 wp-forecast-admin.php:1315
-#: wp-forecast-admin.php:1316 wp-forecast-show.php:361
+#: wp-forecast-admin.php:1213 wp-forecast-admin.php:1214
+#: wp-forecast-admin.php:1215 wp-forecast-admin.php:1216
+#: wp-forecast-admin.php:1217 wp-forecast-admin.php:1218
+#: wp-forecast-admin.php:1219 wp-forecast-admin.php:1220
+#: wp-forecast-admin.php:1221 wp-forecast-show.php:376
 msgid "Day"
 msgstr "Dan"
 
-#: wp-forecast-admin.php:1318
+#: wp-forecast-admin.php:1223
 msgid "Daytime"
 msgstr "Danju"
 
-#: wp-forecast-admin.php:1375
+#: wp-forecast-admin.php:1280
 msgid "Nighttime"
 msgstr "Noću"
 
-#: wp-forecast-admin.php:1443
+#: wp-forecast-admin.php:1348
 msgid "Use UV-Data from openuv.io"
 msgstr ""
 
-#: wp-forecast-admin.php:1445
+#: wp-forecast-admin.php:1350
 msgid "OpenUV - API-Key"
 msgstr ""
 
-#: wp-forecast-admin.php:1453
+#: wp-forecast-admin.php:1358
 #, fuzzy
 msgid "Show UV-Index"
 msgstr "UV indeks"
 
-#: wp-forecast-admin.php:1460
+#: wp-forecast-admin.php:1365
 #, fuzzy
 msgid "Show max. UV-Index"
 msgstr "Maksimalni UV indeks"
 
-#: wp-forecast-admin.php:1467
+#: wp-forecast-admin.php:1372
 #, fuzzy
 msgid "Show Ozone"
 msgstr "UV indeks"
 
-#: wp-forecast-admin.php:1474
-msgid "Show safe exposure time as tooltip"
+#: wp-forecast-admin.php:1379
+msgid "Show alternative UV-icons"
 msgstr ""
 
-#: wp-forecast-admin.php:1482
+#: wp-forecast-admin.php:1387
 msgid "Update options"
 msgstr "Opcije ažuriranja"
 
-#: wp-forecast-admin.php:1505 wp-forecast-admin.php:1508
+#: wp-forecast-admin.php:1410 wp-forecast-admin.php:1413
 msgid "Search location"
 msgstr "Pretraži lokaciju"
 
-#: wp-forecast-admin.php:1506
+#: wp-forecast-admin.php:1411
 msgid "Searchterm"
 msgstr "Termin pretrage"
 
-#: wp-forecast-admin.php:1510
+#: wp-forecast-admin.php:1415
 msgid "The search will be performed using OpenMeteo location database."
 msgstr ""
 
-#: wp-forecast-admin.php:1526
+#: wp-forecast-admin.php:1431
 msgid "Connection-check"
 msgstr "Provjera veze"
 
-#: wp-forecast-admin.php:1529
+#: wp-forecast-admin.php:1434
 msgid ""
 "For OpenWeatherMap please enter your API-Key for Widget A before starting "
 "the connection test."
 msgstr ""
 
-#: wp-forecast-admin.php:1534
+#: wp-forecast-admin.php:1439
 msgid "Select weatherprovider"
 msgstr "Odaberite pružatelja usluge"
 
-#: wp-forecast-admin.php:1542
+#: wp-forecast-admin.php:1448
 msgid "Start check"
 msgstr "Početak provjere"
 
-#: wp-forecast-admin.php:1544
+#: wp-forecast-admin.php:1450
 msgid "Close"
 msgstr "Zatvori"
 
-#: wp-forecast-admin.php:1577
+#: wp-forecast-admin.php:1483
 msgid ""
 "If you are looking for instructions or help on wp-forecast, \n"
 "   please use the following ressources. If you are stuck you can \n"
@@ -817,40 +812,40 @@ msgstr ""
 "molimo vas koristite navedene web adrese. Ako ste ozbiljno zaglavili \n"
 "možete uvijek poslati e-mail na adresu "
 
-#: wp-forecast-admin.php:1586
+#: wp-forecast-admin.php:1492
 msgid "English Manual"
 msgstr "Upute na engleskom"
 
-#: wp-forecast-admin.php:1589
+#: wp-forecast-admin.php:1495
 msgid "German Manual"
 msgstr "Upute na njemačkom"
 
-#: wp-forecast-admin.php:1592
+#: wp-forecast-admin.php:1498
 msgid "Checklist for connection test"
 msgstr "Provjerite vezu"
 
-#: wp-forecast-admin.php:1595
+#: wp-forecast-admin.php:1501
 msgid "wp-forecast on WordPress.org"
 msgstr "wp-forecast na WordPress.org"
 
-#: wp-forecast-admin.php:1598
+#: wp-forecast-admin.php:1504
 msgid "German wp-forecast Site"
 msgstr "Njemačka wp-forecast stranica"
 
-#: wp-forecast-admin.php:1601
+#: wp-forecast-admin.php:1507
 msgid "Using wp-forecast with WPML (german)"
 msgstr "Korištenje wp-forecast u kombinaciji s WPML (na njemačkom)"
 
-#: wp-forecast-admin.php:1604
+#: wp-forecast-admin.php:1510
 msgid "Changelog"
 msgstr "Izmjene"
 
-#: wp-forecast-admin.php:1607
+#: wp-forecast-admin.php:1513
 #, fuzzy
 msgid "Links will open in new Window/Tab."
 msgstr "Otvoriti u novom prozoru"
 
-#: wp-forecast-admin.php:1616
+#: wp-forecast-admin.php:1522
 #, fuzzy
 msgid "wp-forecast Help"
 msgstr "prognoza %s"
@@ -871,60 +866,75 @@ msgstr "Nema podataka o vremenu"
 msgid "Please try again later."
 msgstr "Molimo, pokušajte kasnije."
 
-#: wp-forecast-show.php:235
+#: wp-forecast-show.php:244
 msgid "Apparent"
 msgstr ""
 
-#: wp-forecast-show.php:255 wp-forecast-show.php:411 wp-forecast-show.php:493
+#: wp-forecast-show.php:264 wp-forecast-show.php:435 wp-forecast-show.php:524
 #, fuzzy
 msgid "Winds"
 msgstr "Vjetar"
 
-#: wp-forecast-show.php:280 wp-forecast-show.php:426
+#: wp-forecast-show.php:289 wp-forecast-show.php:449
 #, fuzzy
 msgid "Precip."
 msgstr "Kratak opis"
 
-#: wp-forecast-show.php:297
+#: wp-forecast-show.php:306
 #, fuzzy
 msgid "Current UV index"
 msgstr "UV indeks"
 
-#: wp-forecast-show.php:301 wp-forecast-show.php:435
+#: wp-forecast-show.php:310
 #, fuzzy
 msgid "Max. UV index"
 msgstr "Maksimalni UV indeks"
 
-#: wp-forecast-show.php:445
+#: wp-forecast-show.php:458
+#, fuzzy
+msgid "max. UV index"
+msgstr "Maksimalni UV indeks"
+
+#: wp-forecast-show.php:468
 #, fuzzy
 msgid "Night"
 msgstr "Noć"
 
-#: wp-forecast-show.php:503
+#: wp-forecast-show.php:534
 msgid "max. UV-Index"
 msgstr "Maksimalni UV indeks"
 
-#: wp-forecast-show.php:524 wp-forecast-show.php:525
+#: wp-forecast-show.php:555 wp-forecast-show.php:556
 msgid "Less forecast..."
 msgstr "Smanjen prikaz..."
 
-#: wp-forecast-show.php:526
+#: wp-forecast-show.php:557
 msgid "More forecast..."
 msgstr "Više prognoze..."
 
-#: wp-forecast.php:446
+#: wp-forecast.php:428
 #, php-format
 msgid "wp-forecast %s"
 msgstr "prognoza %s"
 
-#: wp-forecast.php:450
+#: wp-forecast.php:432
 #, fuzzy, php-format
 msgid "wp-forecast-uv %s"
 msgstr "prognoza %s"
 
-#: wpf-setup.php:128
+#: wpf-setup.php:112
 msgid "The Weather"
 msgstr "Prognoza"
+
+#~ msgid "Timeout for weatherprovider connections (secs.)?"
+#~ msgstr "Timeout za konekciju k provajderu (sek.)?"
+
+#, fuzzy
+#~ msgid "Preselect WordPress transfer method"
+#~ msgstr "Odaberite wordpress transfer metodu"
+
+#~ msgid "default"
+#~ msgstr "zadano"
 
 #~ msgid "flik"
 #~ msgstr "Subjektivno"

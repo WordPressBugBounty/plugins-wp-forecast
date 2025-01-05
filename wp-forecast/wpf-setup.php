@@ -77,22 +77,6 @@ function wp_forecast_activate() {
 		wpf_add_option( 'wp-forecast-delopt', $delopt );
 	};
 
-	// add preselected transport method for wp-forecast.
-	$pre_trans = get_option( 'wp-forecast-pre-transport' );
-
-	if ( '' == $pre_trans ) {
-		$pre_trans = 'default';
-		wpf_add_option( 'wp-forecast-pre-transport', $pre_trans );
-	};
-
-	// add transport to use by WordPress only for wp-forecast.
-	$wp_trans = get_option( 'wp-forecast-wp-transport' );
-
-	if ( '' == $wp_trans ) {
-		$wp_trans = 'default';
-		wpf_add_option( 'wp-forecast-wp-transport', $wp_trans );
-	};
-
 	// add ipstack apikey to use by WordPress only for wp-forecast.
 	$wp_ipstack = get_option( 'wp-forecast-ipstackapikey' );
 
@@ -182,7 +166,6 @@ function wp_forecast_activate() {
 		$allallowed = array(
 			'ue_wp-forecast-count'         => 1,
 			'ue_wp-forecast-timeout'       => 1,
-			'ue_wp-forecast-pre-transport' => 1,
 			'ue_wp-forecast-delopt'        => 1,
 			'ue_service'                   => 1,
 			'ue_apikey1'                   => 1,

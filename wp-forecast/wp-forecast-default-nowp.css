@@ -77,6 +77,12 @@ div.wp-forecast-fc-head {
 	margin-right:auto;
 }
 
+/* style for forecast label */
+div.wp-forecast-fc-label {
+	display: inline-block;
+	padding: 3px;
+}
+
 /* style for forecast data details */
 div.wp-forecast-fc-oneday {
 	padding: 0px;
@@ -133,3 +139,6 @@ div.wpf-selector {
 	padding: 5px;
 	font-size: 11px;
 }
+
+/* for weather icon font */
+.wpf-wi-icon {font-size: 45px; padding-top: 15px;}
