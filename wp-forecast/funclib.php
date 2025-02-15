@@ -192,6 +192,14 @@ if ( ! function_exists( 'get_wpf_opts' ) ) {
 
 		$av['OPENMETEO_BASE_URI'] = 'https://api.open-meteo.com/v1/forecast?';
 		$av['OPENMETEO_LOC_URI']  = 'https://geocoding-api.open-meteo.com/v1/search?';
+        
+        // add defaults to missing vars
+        if ( ! array_key_exists('fonticon', $av) ) {
+            $av['fonticon'] = 0;
+        }
+        if ( ! array_key_exists('fonticon_color', $av) ) {
+            $av['fonticon_color'] = '#999999';
+        }
 
 		// if we use multisite then merge admin options.
 		if ( function_exists( 'is_multisite' ) && is_multisite() && 1 != $blog_id ) {

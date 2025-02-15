@@ -4,7 +4,7 @@ Donate link: http://www.tuxlog.de
 Tags: weather,forecast,widget,openweathermap,open-meteo
 Requires at least: 4.0
 Tested up to: 6.7
-Stable tag: 9.6
+Stable tag: 9.7
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 wp-forecast is a highly customizable plugin for wordpress, showing weather-data from open-meteo.com and/or openweathermap.com.
@@ -67,7 +67,9 @@ Credits:
  + Lovrenco Vladislavić 			translation to croatian
  + All the others giving feedback about missing features and bugs.   
    Thank you very much for your contribution to wp-forecast.   
- + Weather Icon Font by me Erik FLowers Weather Icons licensed under SIL OFL 1.1tallation 
+ + Weather Icon Font by me Erik FLowers Weather Icons licensed under SIL OFL 1.1
+ 
+ Installation:
 
 0. Install via the WordPress plugin admin dialog (search for wp-forecast) or
 
@@ -170,6 +172,9 @@ Probably you have enabled "Delete options during plugin deactivation?" and used 
 
 
 == Changelog ==
+
+= v9.7 (2025-02-14) =
+* fixed some php notices in the log
 
 = v9.6 (2025-01-05) =
 * added support for weather icon font and color
