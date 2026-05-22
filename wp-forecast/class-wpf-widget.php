@@ -66,7 +66,9 @@ if ( ! class_exists( 'Wpf_Widget' ) ) {
 		public function update( $new_instance, $old_instance ) {
 			// update semaphor counter for loading wpf ajax script.
 
-			if ( $old_instance['wpfcid'] != $new_instance['wpfcid'] ) {
+			if ( isset($old_instance) && isset($new_instance) &&
+                 isset($old_instance['wpfcid']) && isset($new_instance['wpfcid']) &&
+                 $old_instance['wpfcid'] != $new_instance['wpfcid'] ) {
 				$semnow = get_option( 'wpf_sem_ajaxload' );
 
 				if ( '?' == $new_instance['wpfcid'] ) {

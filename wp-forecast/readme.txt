@@ -3,8 +3,8 @@ Contributors: tuxlog
 Donate link: http://www.tuxlog.de
 Tags: weather,forecast,widget,openweathermap,open-meteo
 Requires at least: 6.0
-Tested up to: 6.9
-Stable tag: 9.8
+Tested up to: 7.0
+Stable tag: 9.9
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 wp-forecast is a highly customizable plugin for wordpress, showing weather-data from open-meteo.com and/or openweathermap.com.
@@ -12,36 +12,36 @@ wp-forecast is a highly customizable plugin for wordpress, showing weather-data 
 == Description ==
 You are reading the readme.txt file for the wp-forecast plugin.
 wp-forecast is a plugin for the famous wordpress blogging package,
-showing the weather-data from open-meteo.com and/or openweathermap.com. 
+showing the weather-data from open-meteo.com and/or openweathermap.com.
 please also refer to the terms of usage of open-meteo.com and/or openweathermap.com.
 
 Features:
 
-   + Displays the weather data from Open-Meteo.com and OpenWeatherMap.com 
+   + Displays the weather data from Open-Meteo.com and OpenWeatherMap.com
      at your wordpress pages, posts or sidebar
-   + Displays OpenUV.io data 
-   + Let you choose the 
+   + Displays OpenUV.io data
+   + Let you choose the
 	 * location (of course)
 	 * the time after the weather data is refreshed
-	 * the langugage 
+	 * the langugage
 	 * metric or american measures
-	 * windspeed unit 
-	 * the forecast days 
+	 * windspeed unit
+	 * the forecast days
 	 * the forecast for up to six/seven days
    + support wordpress widgets, easy placement :-)
    + customize the information you want to show
    + supports pull-down forecast data to efficiently use space
-   + multiple wp-forecast widget support 
+   + multiple wp-forecast widget support
    + integration into your site via css (see below)
    + comes with an api for wordpress-pro's ;-)
 
 Credits:
 
  + Barbary Jany					testing a lot and bring it to valid XHTML
- + Nike Gilhuijs, 
+ + Nike Gilhuijs,
    Frans Lieshout, Wim Scholtes translation to dutch
  + Luís Reis					translation to portugues
- + Håkan Carlström, 
+ + Håkan Carlström,
    Susanne Svensso				translation to swedish
  + Gabriele von der Ohe			translation to german with entities (for iso-8859-1 or latin1 blogs)
  + Martin Loyer/Jean-Pierre		translation to french
@@ -54,7 +54,7 @@ Credits:
  + Castmir & Alejandro 			translation to spanish
  + Tamas Koos					translation to hungarian
  + Valeria Pellegrini			translation to russian
- + Valentina Boeri				translation to romanian 
+ + Valentina Boeri				translation to romanian
  + Roland Geci					translation to slovak
  + Pavel Soukenik				translation to czech
  + Pavel Karnaukhov				translation to ukraine
@@ -65,35 +65,35 @@ Credits:
  + Ali Zemani					translation to persian
  + Amizda Idriz					translation to bosnian
  + Lovrenco Vladislavić 		translation to croatian
- + All the others giving feedback about missing features and bugs.   
-   Thank you very much for your contribution to wp-forecast.   
+ + All the others giving feedback about missing features and bugs.
+   Thank you very much for your contribution to wp-forecast.
  + Weather Icon Font by me Erik FLowers Weather Icons licensed under SIL OFL 1.1
- 
+
  Installation:
 
 0. Install via the WordPress plugin admin dialog (search for wp-forecast) or
 
-1. Upload to your plugins folder, usually `wp-content/plugins/`, keeping 
-   the directory structure intact \(i.e. wp-forecast.php should end up 
+1. Upload to your plugins folder, usually `wp-content/plugins/`, keeping
+   the directory structure intact \(i.e. wp-forecast.php should end up
    in `wp-content/plugins/wp-forecast/`\).
 
 2. Activate the plugin on the plugin screen.
 
-3. Visit the configuration page \(`Options -> WP-forecast`\) to pick the 
+3. Visit the configuration page \(`Options -> WP-forecast`\) to pick the
    number of widgets, data to display and to change any other option.
 
-4. Visit the Themes/Widgets page to place your wp-forecast widget within 
-   your themes sidebars or insert it manually and edit your template 
-   file and put the wp-forecast function where you want your weather 
+4. Visit the Themes/Widgets page to place your wp-forecast widget within
+   your themes sidebars or insert it manually and edit your template
+   file and put the wp-forecast function where you want your weather
    data to show up.
    Example: `<ul><li>
-                 <?php if(function_exists(wp_forecast)) { 
-                   wp_forecast( <widget_id> ); 
+                 <?php if(function_exists(wp_forecast)) {
+                   wp_forecast( <widget_id> );
                  } ?>
              </li></ul>`
 
      You have to replace <widget\_id> with the choosen widget id.
-     For the first widget use wp\_forecast("A"), for the second 
+     For the first widget use wp\_forecast("A"), for the second
      wp\_forecast("B") and so on.
      In most cases it is advisable to put the call into a div environment.
 
@@ -104,8 +104,8 @@ Credits:
 
 6. Optional
    If you would like to change the style, just edit wp-forecast.css
-   there are three classes div.wp-forecast for outer formatting, 
-   table.wp-forecast for the middle part or iconpart and 
+   there are three classes div.wp-forecast for outer formatting,
+   table.wp-forecast for the middle part or iconpart and
    wp-forecast-details for everything below the icon
 
 
@@ -114,16 +114,16 @@ Credits:
    wp-forecast comes with various translations, located in the directory `lang`.
    if you would like to add a new translation, just take the file
    wp-forecast.pot (in the wp-forecast main directory) copy it to
-   wp-forecast_<iso-code>-<iso-code>.po and edit it to add your translations 
+   wp-forecast_<iso-code>-<iso-code>.po and edit it to add your translations
    (e.g. with poedit).
 
    Please be aware that the number codes stand for the weather-situations.
-   you can see the mapping in wp-forecast-en_US-en_US.po. there are also 
-   the letters N, S, W, E they stand for the winddirections and can be 
+   you can see the mapping in wp-forecast-en_US-en_US.po. there are also
+   the letters N, S, W, E they stand for the winddirections and can be
    translates either.
 
-   To use your own translation, a different one as the default just rename the 
-   appropriate file wp-forecast_<iso-code>-<iso-code>.po and 
+   To use your own translation, a different one as the default just rename the
+   appropriate file wp-forecast_<iso-code>-<iso-code>.po and
    wp-forecast_<iso-code>-<iso-code>.mo
 
    To add your translations online at the Translate WordPress project please visit
@@ -138,15 +138,15 @@ Credits:
 There are severeal ressources to visit:
 
 * [The german wp-forecast page][germanpage]
-* [The german reference][germanref] 
+* [The german reference][germanref]
 * [A short FAQ list in german][gerfaq]
-* [A checklist in case of problems (german and english)][checklist] 
+* [A checklist in case of problems (german and english)][checklist]
 * [The english readme.txt][engreadme]
 * [The english reference (a bit out of date but still useful)][engref]
 
-[germanpage]: https://www.tuxlog.de/wp-forecast/ 
+[germanpage]: https://www.tuxlog.de/wp-forecast/
           "German wp-forecast-page"
-[germanref]: https://www.tuxlog.de/wp-forecast-handbuch/ 
+[germanref]: https://www.tuxlog.de/wp-forecast-handbuch/
           "German wp-forecast-manual"
 [gerfaq]: https://www.tuxlog.de/wordpress/2007/wp-forecast-wie-geht-das/
 	  "wp-forecast FAQ - Wie geht das?"
@@ -173,6 +173,9 @@ Probably you have enabled "Delete options during plugin deactivation?" and used 
 
 == Changelog ==
 
+= v9.9 (2026-05-22) =
+* fixed some warning when used from within elementor
+
 = v9.8 (2025-08-22) =
 * fixed a problem with negative timezones for OWM v2
 * removed some old debug notices
@@ -184,9 +187,9 @@ Probably you have enabled "Delete options during plugin deactivation?" and used 
 = v9.6 (2025-01-05) =
 * added support for weather icon font and color
 * fixed wind icon for night time display
-* updated plugin for use with old OWM free data api v2.5 
+* updated plugin for use with old OWM free data api v2.5
 * fixed connection test for old OWM api v2.5
-* put forecast label into its own div 
+* put forecast label into its own div
 * added alternate UV Icon set from "der hase"
 * removed transport pre-selection since this is meanwhile covered by WP-Http
 
@@ -215,7 +218,7 @@ Probably you have enabled "Delete options during plugin deactivation?" and used 
 * fixed some typos
 * avoid warning if translation is missing
 * fixed activation error in some constellations
-* fixed saving setup on Multisite 
+* fixed saving setup on Multisite
 * Echo received message in connectiontest
 
 = v9.0 (2023-09-18) =
@@ -234,7 +237,7 @@ Probably you have enabled "Delete options during plugin deactivation?" and used 
 * completed german translation
 
 = v8.8 (2023-09-13) =
-* added support for OpenMeteo as an alternative to accuweather 
+* added support for OpenMeteo as an alternative to accuweather
 * add admin notice for the accuweather problem
 * added OpenMeteo to asset banner
 
@@ -246,14 +249,14 @@ Probably you have enabled "Delete options during plugin deactivation?" and used 
 * corrected typo in german translation
 * removed DarkSky service because it is terminated
 * added support for OpenWeatherMap new API v3 service
-* removed hint for ending DarkSky service 
+* removed hint for ending DarkSky service
 
 = v8.5 (2022-10-13) =
 * fixed html incompatibility with some themes
 
 = v8.4 (2022-09-19) =
 * fixed pulldown issue when called as shortcode
-* fixed undefined id in shortcodes.php 
+* fixed undefined id in shortcodes.php
 * fixed some warnings about undefined indices
 
 = v8.3 (2022-09-16) =
@@ -275,10 +278,10 @@ Probably you have enabled "Delete options during plugin deactivation?" and used 
 * fixed minor WordPress standard issues
 
 = v7.8 (2022-09-04) =
-* fixed shortcode call 
+* fixed shortcode call
 
 = v7.7 (2022-09-03) =
-* removed support for WordPress multisite admin settings 
+* removed support for WordPress multisite admin settings
 * fixed various PHP Sniffer errors and warnings
 * redesigned admin dialog for connection test (ajax)
 * redesigned admin dialog for location search (ajax)
@@ -371,7 +374,7 @@ Probably you have enabled "Delete options during plugin deactivation?" and used 
 * tested with WordPress 4.8.1
 * fixed some descriptions
 * removed older files from package
-* fixed a network bug which occurs sometimes 
+* fixed a network bug which occurs sometimes
 * reduces max numer of widgets to 8 avoiding heavy loading on some sites
 
 
@@ -420,7 +423,7 @@ Probably you have enabled "Delete options during plugin deactivation?" and used 
 = v4.6 (2013-10-13) =
 * fixed css output with wp_enqueue_script
 * disabled service for google weather because google closed the api
-* added uv-index to the accuweather data fields 
+* added uv-index to the accuweather data fields
 
 = v4.5 (2013-05-07) =
 * added serbian language (Thanks to Amizda Idriz)
@@ -438,7 +441,7 @@ Probably you have enabled "Delete options during plugin deactivation?" and used 
 * fixed search dialog for some special accuweather responses
 
 = v4.2 (2012-10-23) =
-* changed global variable name for xml parsing to prevent collision 
+* changed global variable name for xml parsing to prevent collision
 * added width and height attributes to img tags for better performance
 * fixed HTML warning in admin dialog
 * fixed problem with plugin_locale filter
@@ -470,7 +473,7 @@ Probably you have enabled "Delete options during plugin deactivation?" and used 
 
 = v3.7 (2011-12-21) =
 * fixed include of wordpress specific vars (wp-config.php, wp-load.php) to support secure setting
-* various html5 validity fixes 
+* various html5 validity fixes
 * calculate copyright year automatically
 
 = v3.6 (2011-07-06) =
@@ -527,7 +530,7 @@ e wrong setup.php was included
 = v2.7 (2010-01-22) =
 * added unit label to timeoffset field in admindialog
 * added selection dialog widget to let user choose which location to view
-* extended pulldown widget to use more than one pulldown widget per page 
+* extended pulldown widget to use more than one pulldown widget per page
 * prevent wp-forecast.css from being deleted during automatic plugin update
 
 = v2.6 (2009-12-17) =
@@ -541,7 +544,7 @@ e wrong setup.php was included
 = v2.5 (2009-10-17) =
 * fixed wrong html in widget dialog with wordpress v2.8, that leads to problems with placing widgets in internet explorer
 * set default for widget call via v2.8.1 widgetdialog
-* replaced "Copyright" with &copy; 
+* replaced "Copyright" with &copy;
 * added parameters width and height to shortcode
 * added feature to show/hide forecast data with javascript
 * added transport check to admin dialog
@@ -597,9 +600,9 @@ e wrong setup.php was included
 
 = v2.1 (2008-11-09) =
 
-* added language support for spanish (thanks to Castmir) and 
+* added language support for spanish (thanks to Castmir) and
 * polish (thanks to Lukasz)
-* fixed minor css bug 
+* fixed minor css bug
 
 
 = v2.0 (2008-11-02) =
@@ -636,11 +639,11 @@ e wrong setup.php was included
 * it is now possible to call the widget directly outside from wp
 * fixed a problem with wp >2.5 and the widget dialog
 * removed some redundant html
-* when showing no current weather information 
+* when showing no current weather information
 * placed forecast header into own table with own css class
 * added timeout parameter for the accuweather connections
 * rounded humidity to integer values
-* fixed some typos in swedish translation and added norwegian selection (thanks to RAM_OS) 
+* fixed some typos in swedish translation and added norwegian selection (thanks to RAM_OS)
 
 
 = v1.5 (2008-05-12) =
@@ -661,12 +664,12 @@ e wrong setup.php was included
 * added functions to display a set and a range of widgets at once
 
 
-= v1.3 (2007-12-26) = 
+= v1.3 (2007-12-26) =
 
 * added french translation
 * added german icon 11 (fog, 11_de.gif)
 * extended css classes to support horizontal view via css
-* removed repeating section title 
+* removed repeating section title
 
 
 = v1.2 (2007-11-05) =
@@ -691,7 +694,7 @@ e wrong setup.php was included
 * now works with wordpress mu
 
 
-= v1.0b4 (2007-09-01) = 
+= v1.0b4 (2007-09-01) =
 
 * fixed humidity / pressure checkbox
 * removed hard coded formatting, added css class
@@ -713,9 +716,9 @@ e wrong setup.php was included
 
 = v1.0b (2007-07-17) =
 
-* added support for up to 20 widgets with different locations and settings 
+* added support for up to 20 widgets with different locations and settings
 * added portugese language support
-* weather data is now cached in the database 
+* weather data is now cached in the database
 * no cookies needed anymore
 * default value of missing translations is now english
 * removed configuration dialog from widgets page to avoid misunderstanding about setup
@@ -746,7 +749,7 @@ e wrong setup.php was included
 
 = v0.6 (2007-06-07) =
 
-* Fixed a lot of incorrect XHTML 
+* Fixed a lot of incorrect XHTML
 * added translation for winddirection
 * changed display of low- and hightemperature in forecast
 * no decimals for windspeed
