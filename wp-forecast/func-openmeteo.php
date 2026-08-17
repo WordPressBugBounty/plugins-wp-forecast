@@ -118,7 +118,9 @@ if ( ! function_exists( 'openmeteo_get_data' ) ) {
 		// values from current_weather and daily.
 		$w['temperature']   = round( $weather_array['current_weather']['temperature'], 0 );
 		$w['weathertext']   = openmeteo_wmocode2text( $weather_array['current_weather']['weathercode'] );
-		$w['weathericon']   = openmeteo_map_icon( $weather_array['current_weather']['weathercode'], false, $wpf_vars['fonticon'] );
+		$is_night           = ( isset( $weather_array['current_weather']['is_day'] ) && $weather_array['current_weather']['is_day'] == 0 );
+		$w['is_night']      = $is_night;
+		$w['weathericon']   = openmeteo_map_icon( $weather_array['current_weather']['weathercode'], $is_night, $wpf_vars['fonticon'] );
 		$w['weatherid']     = $weather_array['current_weather']['weathercode'];
 		$w['wgusts']        = round( $weather_array['daily']['windgusts_10m_max'][0] / 3.6, 1 );  // convert from kmh to ms.
 		$w['windspeed']     = round( $weather_array['current_weather']['windspeed'] / 3.6, 1 );   // convert from kmh to ms.
@@ -251,7 +253,8 @@ if ( ! function_exists( 'openmeteo_forecast_data' ) ) {
 		$w['accudate'] = date_i18n( $wpf_vars['fc_date_format'], $ct );
 		$w['accutime'] = date_i18n( $wpf_vars['fc_time_format'], $ct );
 
-		$ico            = openmeteo_map_icon( $w['weatherid'], false, $wpf_vars['fonticon'] );
+		$is_night_val   = ( isset( $w['is_night'] ) && $w['is_night'] );
+		$ico            = openmeteo_map_icon( $w['weatherid'], $is_night_val, $wpf_vars['fonticon'] );
 		$iconfile       = find_icon( $ico );
 		$w['icon']      = 'icons/' . $iconfile;
 		$w['iconcode']  = $ico;
